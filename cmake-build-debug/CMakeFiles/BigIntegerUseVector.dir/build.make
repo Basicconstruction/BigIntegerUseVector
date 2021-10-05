@@ -117,12 +117,40 @@ CMakeFiles/BigIntegerUseVector.dir/Constructor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BigIntegerUseVector.dir/Constructor.cpp.s"
 	D:\MingW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\hay boy\CLionProjects\BigIntegerUseVector\Constructor.cpp" -o CMakeFiles\BigIntegerUseVector.dir\Constructor.cpp.s
 
+CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.obj: CMakeFiles/BigIntegerUseVector.dir/flags.make
+CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.obj: ../OringeOperatorFunction.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\hay boy\CLionProjects\BigIntegerUseVector\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.obj"
+	D:\MingW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\BigIntegerUseVector.dir\OringeOperatorFunction.cpp.obj -c "C:\Users\hay boy\CLionProjects\BigIntegerUseVector\OringeOperatorFunction.cpp"
+
+CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.i"
+	D:\MingW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\hay boy\CLionProjects\BigIntegerUseVector\OringeOperatorFunction.cpp" > CMakeFiles\BigIntegerUseVector.dir\OringeOperatorFunction.cpp.i
+
+CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.s"
+	D:\MingW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\hay boy\CLionProjects\BigIntegerUseVector\OringeOperatorFunction.cpp" -o CMakeFiles\BigIntegerUseVector.dir\OringeOperatorFunction.cpp.s
+
+CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.obj: CMakeFiles/BigIntegerUseVector.dir/flags.make
+CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.obj: ../Operators.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\hay boy\CLionProjects\BigIntegerUseVector\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.obj"
+	D:\MingW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\BigIntegerUseVector.dir\Operators.cpp.obj -c "C:\Users\hay boy\CLionProjects\BigIntegerUseVector\Operators.cpp"
+
+CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.i"
+	D:\MingW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\hay boy\CLionProjects\BigIntegerUseVector\Operators.cpp" > CMakeFiles\BigIntegerUseVector.dir\Operators.cpp.i
+
+CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.s"
+	D:\MingW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\hay boy\CLionProjects\BigIntegerUseVector\Operators.cpp" -o CMakeFiles\BigIntegerUseVector.dir\Operators.cpp.s
+
 # Object files for target BigIntegerUseVector
 BigIntegerUseVector_OBJECTS = \
 "CMakeFiles/BigIntegerUseVector.dir/main.cpp.obj" \
 "CMakeFiles/BigIntegerUseVector.dir/BigInteger.cpp.obj" \
 "CMakeFiles/BigIntegerUseVector.dir/Utils.cpp.obj" \
-"CMakeFiles/BigIntegerUseVector.dir/Constructor.cpp.obj"
+"CMakeFiles/BigIntegerUseVector.dir/Constructor.cpp.obj" \
+"CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.obj" \
+"CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.obj"
 
 # External object files for target BigIntegerUseVector
 BigIntegerUseVector_EXTERNAL_OBJECTS =
@@ -131,11 +159,13 @@ BigIntegerUseVector.exe: CMakeFiles/BigIntegerUseVector.dir/main.cpp.obj
 BigIntegerUseVector.exe: CMakeFiles/BigIntegerUseVector.dir/BigInteger.cpp.obj
 BigIntegerUseVector.exe: CMakeFiles/BigIntegerUseVector.dir/Utils.cpp.obj
 BigIntegerUseVector.exe: CMakeFiles/BigIntegerUseVector.dir/Constructor.cpp.obj
+BigIntegerUseVector.exe: CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.obj
+BigIntegerUseVector.exe: CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.obj
 BigIntegerUseVector.exe: CMakeFiles/BigIntegerUseVector.dir/build.make
 BigIntegerUseVector.exe: CMakeFiles/BigIntegerUseVector.dir/linklibs.rsp
 BigIntegerUseVector.exe: CMakeFiles/BigIntegerUseVector.dir/objects1.rsp
 BigIntegerUseVector.exe: CMakeFiles/BigIntegerUseVector.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\hay boy\CLionProjects\BigIntegerUseVector\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable BigIntegerUseVector.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\hay boy\CLionProjects\BigIntegerUseVector\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable BigIntegerUseVector.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\BigIntegerUseVector.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

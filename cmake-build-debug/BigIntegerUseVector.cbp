@@ -89,6 +89,12 @@
 		<Unit filename="C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Constructor.cpp">
 			<Option target="BigIntegerUseVector"/>
 		</Unit>
+		<Unit filename="C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Operators.cpp">
+			<Option target="BigIntegerUseVector"/>
+		</Unit>
+		<Unit filename="C:/Users/hay boy/CLionProjects/BigIntegerUseVector/OringeOperatorFunction.cpp">
+			<Option target="BigIntegerUseVector"/>
+		</Unit>
 		<Unit filename="C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Utils.cpp">
 			<Option target="BigIntegerUseVector"/>
 		</Unit>

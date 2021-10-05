@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.cpp
+iterator
+-
+BigInteger.h
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
+
 C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
 iostream
 -
@@ -25,6 +31,36 @@ ctime
 -
 chrono
 -
+ctime
+-
+list
+-
+deque
+-
+sstream
+-
+iterator
+-
+Utils.h
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Utils.h
+
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Constructor.cpp
+BigInteger.h
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
+Utils.h
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Utils.h
+
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Operators.cpp
+BigInteger.h
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
+
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/OringeOperatorFunction.cpp
+iterator
+-
+BigInteger.h
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
+
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Utils.cpp
 Utils.h
 C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Utils.h
 
@@ -36,6 +72,8 @@ cassert
 
 C:/Users/hay boy/CLionProjects/BigIntegerUseVector/main.cpp
 iostream
+-
+ctime
 -
 BigInteger.h
 C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h

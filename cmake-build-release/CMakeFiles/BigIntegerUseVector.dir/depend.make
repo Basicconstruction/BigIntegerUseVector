@@ -9,6 +9,14 @@ CMakeFiles/BigIntegerUseVector.dir/Constructor.cpp.obj: \
  ../BigInteger.h \
  ../Constructor.cpp \
  ../Utils.h
+CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.obj: \
+ ../BigInteger.h \
+ ../Operators.cpp \
+ ../Utils.h
+CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.obj: \
+ ../BigInteger.h \
+ ../OringeOperatorFunction.cpp \
+ ../Utils.h
 CMakeFiles/BigIntegerUseVector.dir/Utils.cpp.obj: \
  ../Utils.cpp \
  ../Utils.h

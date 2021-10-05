@@ -176,6 +176,54 @@ Constructor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\BigIntegerUseVector.dir\build.make CMakeFiles/BigIntegerUseVector.dir/Constructor.cpp.s
 .PHONY : Constructor.cpp.s
 
+Operators.obj: Operators.cpp.obj
+.PHONY : Operators.obj
+
+# target to build an object file
+Operators.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BigIntegerUseVector.dir\build.make CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.obj
+.PHONY : Operators.cpp.obj
+
+Operators.i: Operators.cpp.i
+.PHONY : Operators.i
+
+# target to preprocess a source file
+Operators.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BigIntegerUseVector.dir\build.make CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.i
+.PHONY : Operators.cpp.i
+
+Operators.s: Operators.cpp.s
+.PHONY : Operators.s
+
+# target to generate assembly for a file
+Operators.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BigIntegerUseVector.dir\build.make CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.s
+.PHONY : Operators.cpp.s
+
+OringeOperatorFunction.obj: OringeOperatorFunction.cpp.obj
+.PHONY : OringeOperatorFunction.obj
+
+# target to build an object file
+OringeOperatorFunction.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BigIntegerUseVector.dir\build.make CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.obj
+.PHONY : OringeOperatorFunction.cpp.obj
+
+OringeOperatorFunction.i: OringeOperatorFunction.cpp.i
+.PHONY : OringeOperatorFunction.i
+
+# target to preprocess a source file
+OringeOperatorFunction.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BigIntegerUseVector.dir\build.make CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.i
+.PHONY : OringeOperatorFunction.cpp.i
+
+OringeOperatorFunction.s: OringeOperatorFunction.cpp.s
+.PHONY : OringeOperatorFunction.s
+
+# target to generate assembly for a file
+OringeOperatorFunction.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BigIntegerUseVector.dir\build.make CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.s
+.PHONY : OringeOperatorFunction.cpp.s
+
 Utils.obj: Utils.cpp.obj
 .PHONY : Utils.obj
 
@@ -239,6 +287,12 @@ help:
 	@echo ... Constructor.obj
 	@echo ... Constructor.i
 	@echo ... Constructor.s
+	@echo ... Operators.obj
+	@echo ... Operators.i
+	@echo ... Operators.s
+	@echo ... OringeOperatorFunction.obj
+	@echo ... OringeOperatorFunction.i
+	@echo ... OringeOperatorFunction.s
 	@echo ... Utils.obj
 	@echo ... Utils.i
 	@echo ... Utils.s

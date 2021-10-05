@@ -10,6 +10,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.cpp" "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/cmake-build-debug/CMakeFiles/BigIntegerUseVector.dir/BigInteger.cpp.obj"
   "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Constructor.cpp" "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/cmake-build-debug/CMakeFiles/BigIntegerUseVector.dir/Constructor.cpp.obj"
+  "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Operators.cpp" "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/cmake-build-debug/CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.obj"
+  "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/OringeOperatorFunction.cpp" "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/cmake-build-debug/CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.obj"
   "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Utils.cpp" "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/cmake-build-debug/CMakeFiles/BigIntegerUseVector.dir/Utils.cpp.obj"
   "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/main.cpp" "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/cmake-build-debug/CMakeFiles/BigIntegerUseVector.dir/main.cpp.obj"
   )

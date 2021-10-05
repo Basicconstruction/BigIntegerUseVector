@@ -1,14 +1,15 @@
 #include <iostream>
+#include <ctime>
 #include "BigInteger.h"
+
 int main() {
-    high_resolution_clock::time_point beginTime = high_resolution_clock::now();
-//    for(int i = 0;i < 10;i++){
-//
-////        cout<<BigInteger::getFibo(10000)<<endl;
-//    }
-    cout<<BigInteger::factorial(1000).value;
-    high_resolution_clock::time_point endTime = high_resolution_clock::now();
-    milliseconds timeInterval = std::chrono::duration_cast<milliseconds>(endTime - beginTime);
-    cout << "\nRunning Time " << timeInterval.count()  << "ms" << endl;
+
+    clock_t begin = clock();
+    for(int i = 0;i<20;i++){
+        cout<<BigInteger::toString(BigInteger::pow(8,1000));
+    }
+    clock_t end = clock();
+    cout<<endl<<end-begin<<"ms"<<endl;
+
     return 0;
 }
