@@ -14,8 +14,10 @@ BigInteger::BigInteger(long long int initNum) {
         initNum = -initNum;
         signum = false;
     }
-    int p = 2;
-    while(math_pow(10,p)<=initNum){
+    int p = 0;
+    ll tmp = initNum;
+    while(tmp>0){
+        tmp/=100;
         p+=2;
     }
     int eff_size = p/2;

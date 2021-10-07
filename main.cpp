@@ -3,13 +3,20 @@
 #include "BigInteger.h"
 
 int main() {
-
     clock_t begin = clock();
-    for(int i = 0;i<20;i++){
-        cout<<BigInteger::toString(BigInteger::pow(8,1000));
+    for(int i = 0;i<1;i++){
+//        cout<<BigInteger::toString(BigInteger::pow(2,10000));
+//        cout<<BigInteger::toString(BigInteger::factorial(3000));
+//        BigInteger::printSelf(BigInteger::fibo(100));
+//        std::cout<<BigInteger::pow(8,1000).toString()<<endl;
+//        BigInteger::pow(8,1000).printSelf();
+        std::cout<<BigInteger(9).pow(10000).toString()<<endl;
+//        std::cout<<BigInteger::toString(BigInteger::pow(8,1000));
+
     }
     clock_t end = clock();
     cout<<endl<<end-begin<<"ms"<<endl;
 
+//    cout<<BigInteger::longlongValue(BigInteger::pow(2,100000));
     return 0;
 }

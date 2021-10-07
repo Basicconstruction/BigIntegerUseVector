@@ -12,6 +12,9 @@ void BigInteger::putInObject(vector<jbyte>& value,ll transferredValue){
         transferredValue/=100;
     }
 }
+string BigInteger::toString() const{
+    return BigInteger::toString(*this);
+}
 string BigInteger::toString(const BigInteger& bigInteger){
     string s;
     s+= bigInteger.signum ? "" : "-";
@@ -29,6 +32,9 @@ string BigInteger::toString(const BigInteger& bigInteger){
     }
     s+= os.str();
     return s;
+}
+void BigInteger::printSelf() const {
+    BigInteger::printSelf(*this);
 }
 void BigInteger::printSelf(const BigInteger& bigInteger){
     std::ostream_iterator<int> out(std::cout," ");
@@ -74,6 +80,15 @@ int BigInteger::compareTo(vector<jbyte> v1, vector<jbyte> v2) {
 }
 BigInteger BigInteger::value_of(long long int num) {
     return BigInteger(num);
+}
+BigInteger BigInteger::value_of(string num) {
+    return BigInteger(num);
+}
+BigInteger BigInteger::value_of(BigInteger &num) {
+    return num;
+}
+BigInteger BigInteger::pow(int times){
+    return BigInteger::pow(*this,times);
 }
 BigInteger BigInteger::pow(BigInteger& bigInteger, int times) {
     if(times == 0){
@@ -139,7 +154,20 @@ BigInteger BigInteger::fibo(long long int p) {
         return z;
     }
 }
-
+ll BigInteger::longlongValue() const {
+    return BigInteger::longlongValue(*this);
+}
+ll BigInteger::longlongValue(const BigInteger &num) {
+    ll res = 0;
+    vector<jbyte>::const_reverse_iterator it = num.value.rbegin();
+    res += (*it++);
+    while(it!=num.value.rend()){
+        res *= 100;
+        res += *it;
+        it++;
+    }
+    return res;
+}
 
 
 

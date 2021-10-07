@@ -34,7 +34,9 @@ public:
     explicit BigInteger(long long int);
     explicit BigInteger(string);
     static void putInObject(vector<jbyte> &value, ll transferredValue);
+    void printSelf() const;
     static void printSelf(const BigInteger& bigInteger);
+    string toString() const;
     static string toString(const BigInteger& bigInteger);
     static void putInObject(vector<jbyte> &value,string transferredValue);
     BigInteger(const BigInteger&);
@@ -112,6 +114,9 @@ public:
     BigInteger& operator*=(long long int b2);
     static void getSignaledData(vector<short> &clubs, vector<jbyte>& data);
     static BigInteger value_of(long long int);
+    static BigInteger value_of(string);
+    static BigInteger value_of(BigInteger&);
+    BigInteger pow(int);
     static BigInteger pow(BigInteger&,int);
     static BigInteger pow(string,int);
     static BigInteger pow(long long int,int);
@@ -119,6 +124,8 @@ public:
     static BigInteger factorial(BigInteger);
     static BigInteger factorial(string);
     static BigInteger fibo(long long int);
+    ll longlongValue() const;
+    static ll longlongValue(const BigInteger&);
 
 };
 
