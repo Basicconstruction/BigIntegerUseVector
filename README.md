@@ -3,14 +3,14 @@ Performance Testing
 test platform
 --
 ###CLion 2021.2
-Build #CL-212.4746.93, built on July 27, 2021
-Runtime version: 11.0.11+9-b1504.13 amd64
-VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o.
-Windows 10 10.0
-GC: G1 Young Generation, G1 Old Generation
-Memory: 2000M
-Cores: 16
-Registry: run.processes.with.pty=TRUE
+Build #CL-212.4746.93, built on July 27, 2021  
+Runtime version: 11.0.11+9-b1504.13 amd64  
+VM: OpenJDK 64-Bit Server VM by JetBrains s.r.o.  
+Windows 10 10.0  
+GC: G1 Young Generation, G1 Old Generation  
+Memory: 2000M  
+Cores: 16  
+Registry: run.processes.with.pty=TRUE  
 Non-Bundled Plugins: com.kite.intellij (1.9.4)
 
 ###gun mingw
