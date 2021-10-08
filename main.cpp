@@ -10,7 +10,7 @@ int main() {
 //        BigInteger::printSelf(BigInteger::fibo(100));
 //        std::cout<<BigInteger::pow(8,1000).toString()<<endl;
 //        BigInteger::pow(8,1000).printSelf();
-        std::cout<<BigInteger(9).pow(10000).toString()<<endl;
+        std::cout<<BigInteger(2).pow(10000).toString()<<endl;
 //        std::cout<<BigInteger::toString(BigInteger::pow(8,1000));
 
     }
