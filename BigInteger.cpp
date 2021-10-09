@@ -3,7 +3,6 @@
 using namespace std;
 using namespace std::string_literals;
 ostream& operator<<(ostream& os,const BigInteger & num){
-//    cout<<"For design reasons, if you only need to enter a positive number, please enter an additional + sign\n";
     char fillc = os.fill('0');
     auto it = num.value.rbegin();
     if(!num.signum){
@@ -17,22 +16,8 @@ ostream& operator<<(ostream& os,const BigInteger & num){
     return os;
 }
 istream &operator>>(istream & is, BigInteger & num) {
-    char c;
-    cin>>c;
     string s;
-    if(c=='+'){
-        cin>>s;
-    }else if(c=='-'){
-        cin>>s;
-        s.insert(0,"-");
-    }else if(c>='0'&&c<='9'){
-        cin>>s;
-        s.insert(0,string(1,c));
-    }else{
-        is.setstate(std::ios::failbit);
-        cerr<<"error when revolve the input chars\n";
-        return is;
-    }
+    getline(cin,s,'\n');
     BigInteger tmp(s);
     num.signum = tmp.signum;
     num.value = tmp.value;
