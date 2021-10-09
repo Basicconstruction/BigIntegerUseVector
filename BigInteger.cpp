@@ -3,6 +3,7 @@
 using namespace std;
 using namespace std::string_literals;
 ostream& operator<<(ostream& os,const BigInteger & num){
+//    cout<<"For design reasons, if you only need to enter a positive number, please enter an additional + sign\n";
     char fillc = os.fill('0');
     auto it = num.value.rbegin();
     if(!num.signum){
@@ -37,6 +38,7 @@ istream &operator>>(istream & is, BigInteger & num) {
     num.value = tmp.value;
     return is;
 }
+
 void BigInteger::putInObject(vector<jbyte>& value,ll transferredValue){
     typedef vector<jbyte>::iterator vji;
     for(unsigned char & it : value){

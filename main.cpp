@@ -17,6 +17,7 @@ int main() {
         cout<<x.pow(1000);
 
     }
+    BigInteger tmp;
     clock_t end = clock();
     cout<<endl<<end-begin<<"ms"<<endl;
 
