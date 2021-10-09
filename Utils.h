@@ -5,6 +5,7 @@
 #ifndef BIGINTEGERUSEVECTOR_UTILS_H
 #define BIGINTEGERUSEVECTOR_UTILS_H
 #include <iostream>
+#include "BigInteger.h"
 #include <cassert>
 using namespace std;
 unsigned long long math_pow(int x,int y);

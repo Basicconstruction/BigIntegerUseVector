@@ -35,7 +35,7 @@ microsoft window 11
 |10000|26977ms| |300ms| | |
 
 ```python
-#计算pow(2,x)
+#计算pow(2,x)  python
 import time
 start = time.process_time()
 for i in range(10):
@@ -45,7 +45,7 @@ print(end-start)
 ```
 
 ```python
-#就算factorial
+#就算factorial  python
 import time
 start = time.process_time()
 for i in range(10):

@@ -1,10 +1,42 @@
-
-
-
 #include <iterator>
 #include "BigInteger.h"
 using namespace std;
 using namespace std::string_literals;
+ostream& operator<<(ostream& os,const BigInteger & num){
+    char fillc = os.fill('0');
+    auto it = num.value.rbegin();
+    if(!num.signum){
+        os<<"-";
+    }
+    os<<short(*it++);
+    for(;it!=num.value.rend();it++){
+        os<<std::setw(2)<<short(*it);
+    }
+    os<<setfill(fillc);
+    return os;
+}
+istream &operator>>(istream & is, BigInteger & num) {
+    char c;
+    cin>>c;
+    string s;
+    if(c=='+'){
+        cin>>s;
+    }else if(c=='-'){
+        cin>>s;
+        s.insert(0,"-");
+    }else if(c>='0'&&c<='9'){
+        cin>>s;
+        s.insert(0,string(1,c));
+    }else{
+        is.setstate(std::ios::failbit);
+        cerr<<"error when revolve the input chars\n";
+        return is;
+    }
+    BigInteger tmp(s);
+    num.signum = tmp.signum;
+    num.value = tmp.value;
+    return is;
+}
 void BigInteger::putInObject(vector<jbyte>& value,ll transferredValue){
     typedef vector<jbyte>::iterator vji;
     for(unsigned char & it : value){

@@ -19,6 +19,8 @@ climits
 -
 stdio.h
 -
+iomanip
+-
 cstring
 -
 ctime
@@ -41,6 +43,8 @@ C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Utils.h
 C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Utils.h
 iostream
 -
+BigInteger.h
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
 cassert
 -
 

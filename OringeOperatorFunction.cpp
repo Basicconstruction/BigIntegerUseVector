@@ -254,7 +254,6 @@ BigInteger BigInteger::singleMul(short b) const {
 }
 BigInteger BigInteger::mul(const BigInteger &b2) {
     BigInteger res;
-    res.signum = (this->signum==b2.signum);
     vector<jbyte> longOne,shortOne;
     if((*this).value.size()>=b2.value.size()){
         longOne = (*this).value;
@@ -270,6 +269,7 @@ BigInteger BigInteger::mul(const BigInteger &b2) {
     for(int i = 0;i<parts.size();i++){
         res += (tmp.singleMul(parts[i])<<i);
     }
+    res.signum = (this->signum==b2.signum);
     return res;
 }
 

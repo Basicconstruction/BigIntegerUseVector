@@ -10,6 +10,7 @@
 #include <cassert>
 #include <climits>
 #include <stdio.h>
+#include <iomanip>
 #include <cstring>
 #include <ctime>
 #include <chrono>
@@ -26,7 +27,7 @@ using namespace std;
 using namespace std::string_literals;
 typedef unsigned char jbyte;
 typedef unsigned long long ll;
-class BigInteger {
+class BigInteger{
 public:
     vector<jbyte> value;
     bool signum;
@@ -34,6 +35,8 @@ public:
     explicit BigInteger(long long int);
     explicit BigInteger(string);
     static void putInObject(vector<jbyte> &value, ll transferredValue);
+    friend ostream& operator<<(ostream& os,const BigInteger & num);
+    friend istream& operator>>(istream& is,BigInteger & num);
     void printSelf() const;
     static void printSelf(const BigInteger& bigInteger);
     string toString() const;
