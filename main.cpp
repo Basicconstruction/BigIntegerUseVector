@@ -11,9 +11,10 @@ int main() {
 //        BigInteger::pow(8,1000).printSelf();
 //        std::cout<<BigInteger(2).pow(10000)<<endl;
 //        std::cout<<BigInteger::toString(BigInteger::pow(8,1000));
-        BigInteger x(3);
-        cin>>x;
-        cout<<x.pow(1000);
+//        BigInteger x(3);
+//        cin>>x;
+//        cout<<x.pow(1000);
+        cout<<BigInteger::fibo(1000);
 
     }
     clock_t end = clock();

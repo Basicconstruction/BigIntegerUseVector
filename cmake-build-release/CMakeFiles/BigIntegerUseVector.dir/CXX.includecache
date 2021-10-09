@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.cpp
-iterator
--
-BigInteger.h
-C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
-
 C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
 iostream
 -
@@ -53,4 +47,12 @@ BigInteger.h
 C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
 cassert
 -
+
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/main.cpp
+iostream
+-
+ctime
+-
+BigInteger.h
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
 
