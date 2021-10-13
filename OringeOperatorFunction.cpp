@@ -7,7 +7,7 @@ typedef std::vector<jbyte>::iterator vji;
 typedef std::vector<jbyte>::reverse_iterator vjri;
 typedef std::vector<short>::iterator vsi;
 typedef std::vector<short>::reverse_iterator vsri;
-BigInteger& BigInteger::add(BigInteger &num){
+BigInteger& BigInteger::add(const BigInteger &num){
     short carry = 0;
     vector<jbyte> tem = this->value;
     vector<jbyte> added = num.value;
@@ -214,6 +214,9 @@ void BigInteger::getSignaledData(vector<short>& clubs, vector<jbyte>& data) {
     }
 }
 BigInteger BigInteger::singleMul(short b) const {
+    if(this->lessThan(BigInteger(922337203685477580))){
+        return BigInteger((*this).toLonglongValue()*b);
+    }
     if(b==0){
         return {};
     }else if(b==1){
@@ -280,19 +283,19 @@ BigInteger BigInteger::mul(long long int b2) const{
 BigInteger BigInteger::mul(const string &b2) const{
     return this->mul(BigInteger(b2));
 }
-bool BigInteger::lessThan(const BigInteger &b) {
+bool BigInteger::lessThan(const BigInteger &b)const{
     return this->compareTo(b) < 0;
 }
 
-bool BigInteger::greaterThan(const BigInteger &b) {
+bool BigInteger::greaterThan(const BigInteger &b)const{
     return this->compareTo(b) > 0;
 }
 
-bool BigInteger::lessOrEqualTo(const BigInteger &b) {
+bool BigInteger::lessOrEqualTo(const BigInteger &b)const{
     return this->compareTo(b) <= 0;
 }
 
-bool BigInteger::greaterOrEqualTo(const BigInteger &b) {
+bool BigInteger::greaterOrEqualTo(const BigInteger &b)const{
     return this->compareTo(b) >= 0;
 }
 
@@ -300,10 +303,13 @@ bool BigInteger::equalTo(const BigInteger &b)const{
     return this->compareTo(b) == 0;
 }
 
-bool BigInteger::notEqualTo(const BigInteger &b) {
+bool BigInteger::notEqualTo(const BigInteger &b)const{
     return this->compareTo(b) != 0;
 }
 BigInteger BigInteger::div(const BigInteger &num) {
+    if(this->lessThan(BigInteger(9223372036854775807))){
+        return BigInteger((*this).toLonglongValue()/num.toLonglongValue());
+    }
     if(num.equalTo(BigInteger(0))){
         throw runtime_error("num shouldn't be the zero");
     }
@@ -369,6 +375,74 @@ BigInteger BigInteger::div(string num){
     BigInteger ft(num);
     return div(ft);
 }
+BigInteger BigInteger::mod(const BigInteger & num){
+    if(this->lessThan(BigInteger(9223372036854775807))){
+        return BigInteger((*this).toLonglongValue()%num.toLonglongValue());
+    }
+    BigInteger res;
+    if(compareTo(num.value,(*this).value)==1){
+        if(this->signum){
+            res.value = (*this).value;
+            return res;
+        }else{
+            res = (*this).add(num);
+            return res;
+        }
+    }
+    BigInteger tmp = (*this);
+    if(!this->signum){
+        while(tmp.lessThan(BigInteger(0))){
+            tmp += num;
+        }
+    }
+    string s = tmp.toString();
+    size_t len = s.length();
+    size_t p = 0;
+    BigInteger b = num;
+    for(;p<len;){
+        BigInteger y(string(s.begin(),s.begin()+1+p));
+        if(y<b){
+            p++;
+        }else{
+            break;
+        }
+    }
+    BigInteger* t = new BigInteger(string(s.begin(),s.begin()+1+p));
+    short cal;
+    int newp = p;
+    res = 0;
+    while(true){
+        if(*t<b){
+            res = (res<<1);
+        }else{
+            cal = divHelp(*t,b);
+            res = (res<<1).add(cal);//unpredict problem when use +
+        }
+        tmp -= ((b*cal)<<(len-1-newp));
+        if(res.toString().length()==len-p){
+            break;
+        }
+        newp++;
+        {
+            BigInteger foyer = (*t).sub((b*cal));
+            if(foyer.equalTo(BigInteger(0))){
+                t = new BigInteger(static_cast<int>((*this).toString()[newp]-'0'));
+            }else{
+                *t = (foyer<<1).add(static_cast<int>((*this).toString()[newp]-'0'));
+            }
+        }
+        cal = 0;
+    }
+    return tmp;
+
+}
+BigInteger BigInteger::mod(const long long int num){
+    return mod(BigInteger(num));
+}
+BigInteger BigInteger::mod(string num){
+    return mod(BigInteger(num));
+}
+
 
 
 

@@ -240,8 +240,24 @@ bool BigInteger::operator!=(long long int b) {
     BigInteger tmp(b);
     return this->notEqualTo(tmp);
 }
-
-
+BigInteger BigInteger::operator/(const BigInteger& num){
+    return div(num);
+}
+BigInteger BigInteger::operator/(const long long int num){
+    return div(BigInteger(num));
+}
+BigInteger BigInteger::operator/(string s){
+    return div(BigInteger(s));
+}
+BigInteger BigInteger::operator%(const BigInteger & num){
+    return mod(num);
+}
+BigInteger BigInteger::operator%(const long long int num){
+    return mod(BigInteger(num));
+}
+BigInteger BigInteger::operator%(string num){
+    return mod(BigInteger(num));
+}
 
 
 

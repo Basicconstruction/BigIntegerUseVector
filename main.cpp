@@ -15,7 +15,11 @@ int main() {
 //        cin>>x;
 //        cout<<x.pow(1000);
 //        cout<<BigInteger::fibo(1000).toString();
-        cout<<BigInteger(237192837128310312).div(BigInteger(213712398));
+        cout<<BigInteger(2371928)%199;
+        int j = 688;
+        for(int i = 1000000;i<1010000;i++){
+            cout<<(BigInteger(i)%j).toLonglongValue()<<endl;
+        }
 
     }
     clock_t end = clock();

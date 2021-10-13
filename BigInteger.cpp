@@ -202,6 +202,17 @@ short divHelp(BigInteger &b1, const BigInteger &b2)  {
     }
     return 9;
 }
+long long int BigInteger::toLonglongValue()const{
+    long long int res = 0;
+    vector<jbyte> vec = (*this).value;
+    vector<jbyte>::const_reverse_iterator it = vec.rbegin();
+    while(it!=vec.rend()){
+        res *= 100;
+        res += (*it);
+        it++;
+    }
+    return this->signum?res:-res;
+}
 
 
 
