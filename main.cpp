@@ -14,7 +14,8 @@ int main() {
 //        BigInteger x(3);
 //        cin>>x;
 //        cout<<x.pow(1000);
-        cout<<BigInteger::fibo(1000);
+//        cout<<BigInteger::fibo(1000).toString();
+        cout<<BigInteger(237192837128310312).div(BigInteger(213712398));
 
     }
     clock_t end = clock();

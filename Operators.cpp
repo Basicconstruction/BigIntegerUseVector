@@ -156,13 +156,13 @@ BigInteger BigInteger::operator>>(long long int y) const {
     b2.value = vi;
     return b2;
 }
-BigInteger BigInteger::operator*(const BigInteger& b2) {
+BigInteger BigInteger::operator*(const BigInteger& b2) const{
     return this->mul(b2);
 }
-BigInteger BigInteger::operator*(const string& b2) {
+BigInteger BigInteger::operator*(const string& b2) const{
     return this->mul(b2);
 }
-BigInteger BigInteger::operator*(const long long int b2) {
+BigInteger BigInteger::operator*(const long long int b2) const{
     return this->mul(b2);
 }
 
@@ -240,6 +240,8 @@ bool BigInteger::operator!=(long long int b) {
     BigInteger tmp(b);
     return this->notEqualTo(tmp);
 }
+
+
 
 
 

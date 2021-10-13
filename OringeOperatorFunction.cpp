@@ -108,7 +108,7 @@ BigInteger& BigInteger::add(const string &num){
     BigInteger b2(num);
     return add(b2);
 }
-int BigInteger::compareTo(const BigInteger &num) {
+int BigInteger::compareTo(const BigInteger &num)const{
     if(this->signum&&!num.signum){
         return 1;
     }else if(!this->signum&&num.signum){
@@ -252,7 +252,7 @@ BigInteger BigInteger::singleMul(short b) const {
     res.value.swap(pre_res);
     return res;
 }
-BigInteger BigInteger::mul(const BigInteger &b2) {
+BigInteger BigInteger::mul(const BigInteger &b2)const{
     BigInteger res;
     vector<jbyte> longOne,shortOne;
     if((*this).value.size()>=b2.value.size()){
@@ -273,11 +273,11 @@ BigInteger BigInteger::mul(const BigInteger &b2) {
     return res;
 }
 
-BigInteger BigInteger::mul(long long int b2) {
+BigInteger BigInteger::mul(long long int b2) const{
     return this->mul(BigInteger(b2));
 }
 
-BigInteger BigInteger::mul(const string &b2) {
+BigInteger BigInteger::mul(const string &b2) const{
     return this->mul(BigInteger(b2));
 }
 bool BigInteger::lessThan(const BigInteger &b) {
@@ -296,12 +296,78 @@ bool BigInteger::greaterOrEqualTo(const BigInteger &b) {
     return this->compareTo(b) >= 0;
 }
 
-bool BigInteger::equalTo(const BigInteger &b) {
+bool BigInteger::equalTo(const BigInteger &b)const{
     return this->compareTo(b) == 0;
 }
 
 bool BigInteger::notEqualTo(const BigInteger &b) {
     return this->compareTo(b) != 0;
+}
+BigInteger BigInteger::div(const BigInteger &num) {
+    if(num.equalTo(BigInteger(0))){
+        throw runtime_error("num shouldn't be the zero");
+    }
+    BigInteger tmp;
+    if(num.equalTo(BigInteger(1))){
+        return *this;
+    }else if(num.equalTo(BigInteger(-1))){
+        tmp = *this;
+        tmp.signum = !tmp.signum;
+        return tmp;
+    }
+    if(compareTo(num.value,(*this).value)==1){
+        return BigInteger(0);
+    }
+    tmp.value = (*this).value;
+    tmp.signum = true;
+    string s = tmp.toString();
+    size_t len = s.length();
+    size_t p = 0;
+    BigInteger b = num;
+    for(;p<len;){
+        BigInteger y(string(s.begin(),s.begin()+1+p));
+        if(y<b){
+            p++;
+        }else{
+            break;
+        }
+    }
+    BigInteger* t = new BigInteger(string(s.begin(),s.begin()+1+p));
+    short cal;
+    int newp = p;
+    BigInteger res;
+    while(true){
+        if(*t<b){
+            res = (res<<1);
+        }else{
+            cal = divHelp(*t,b);
+            res = (res<<1).add(cal);//unpredict problem when use +
+        }
+        tmp -= ((b*cal)<<(len-1-newp));
+        if(res.toString().length()==len-p){
+            break;
+        }
+        newp++;
+        {
+            BigInteger foyer = (*t).sub((b*cal));
+            if(foyer.equalTo(BigInteger(0))){
+                t = new BigInteger(static_cast<int>((*this).toString()[newp]-'0'));
+            }else{
+                *t = (foyer<<1).add(static_cast<int>((*this).toString()[newp]-'0'));
+            }
+        }
+        cal = 0;
+    }
+    res.signum = ((*this).signum==num.signum);
+    return res;
+}
+BigInteger BigInteger::div(const long long int num){
+    BigInteger ft(num);
+    return div(ft);
+}
+BigInteger BigInteger::div(string num){
+    BigInteger ft(num);
+    return div(ft);
 }
 
 

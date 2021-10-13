@@ -14,8 +14,9 @@ BigInteger::BigInteger(long long int initNum) {
         initNum = -initNum;
         signum = false;
     }
-    int p = 0;
+    int p = 2;
     ll tmp = initNum;
+    tmp/=100;
     while(tmp>0){
         tmp/=100;
         p+=2;

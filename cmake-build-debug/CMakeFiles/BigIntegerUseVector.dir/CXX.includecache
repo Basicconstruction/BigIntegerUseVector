@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.cpp
-iterator
--
-BigInteger.h
-C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
-
 C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
 iostream
 -
@@ -24,6 +18,8 @@ cassert
 climits
 -
 stdio.h
+-
+iomanip
 -
 cstring
 -
@@ -44,29 +40,11 @@ iterator
 Utils.h
 C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Utils.h
 
-C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Constructor.cpp
-BigInteger.h
-C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
-Utils.h
-C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Utils.h
-
-C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Operators.cpp
-BigInteger.h
-C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
-
-C:/Users/hay boy/CLionProjects/BigIntegerUseVector/OringeOperatorFunction.cpp
-iterator
--
-BigInteger.h
-C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
-
-C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Utils.cpp
-Utils.h
-C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Utils.h
-
 C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Utils.h
 iostream
 -
+BigInteger.h
+C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.h
 cassert
 -
 

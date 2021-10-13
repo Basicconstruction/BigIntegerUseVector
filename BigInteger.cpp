@@ -188,6 +188,21 @@ ll BigInteger::longlongValue(const BigInteger &num) {
     return res;
 }
 
+short divHelp(BigInteger &b1, const BigInteger &b2)  {
+    for (short k = 2; k <= 9; ++k) {
+        if (b1 == (b2 * k)) {
+            return k;
+        }
+        else if (b1 < (b2 * k)) {
+            return --k;
+        }
+        else {
+
+        }
+    }
+    return 9;
+}
+
 
 
 

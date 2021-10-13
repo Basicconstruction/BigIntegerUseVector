@@ -18,6 +18,7 @@ CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.obj: \
  ../OringeOperatorFunction.cpp \
  ../Utils.h
 CMakeFiles/BigIntegerUseVector.dir/Utils.cpp.obj: \
+ ../BigInteger.h \
  ../Utils.cpp \
  ../Utils.h
 CMakeFiles/BigIntegerUseVector.dir/main.cpp.obj: \
