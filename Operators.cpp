@@ -7,11 +7,11 @@ using std::vector;
 using std::list;
 using std::deque;
 BigInteger& BigInteger::operator = (const BigInteger& num)= default;
-BigInteger& BigInteger::operator=(long long int num) {
+BigInteger& BigInteger::operator=(const long long int& num) {
     *this = BigInteger(num);
     return *this;
 }
-BigInteger &BigInteger::operator=(string num) {
+BigInteger &BigInteger::operator=(const string& num) {
     *this = BigInteger(num);
     return *this;
 }
@@ -33,10 +33,12 @@ BigInteger& BigInteger::operator+=(const string&num) {
     *this = this->add(num);
     return *this;
 }
-BigInteger& BigInteger::operator+=(const long long int num) {
+BigInteger& BigInteger::operator+=(const long long int& num) {
     *this = this->add(num);
     return *this;
 }
+
+
 BigInteger& BigInteger::operator-=(const BigInteger& num) {
     *this = this->sub(num);
     return *this;
@@ -45,10 +47,12 @@ BigInteger& BigInteger::operator-=(const string& num) {
     *this = this->sub(num);
     return *this;
 }
-BigInteger& BigInteger::operator-=(const long long int num) {
+BigInteger& BigInteger::operator-=(const long long int& num) {
     *this = this->sub(num);
     return *this;
 }
+
+
 //pre
 BigInteger& BigInteger::operator++() {
     (*this) += 1;
@@ -71,24 +75,7 @@ BigInteger BigInteger::operator--(int dummy) {
     (*this) -= 1;
     return x;
 }
-bool BigInteger::operator < (const BigInteger& b) const {
-    return this->compareTo(b) < 0;
-}
-bool BigInteger::operator > (const BigInteger& b) const {
-    return this->compareTo(b) > 0;
-}
-bool BigInteger::operator <= (const BigInteger& b) const {
-    return this->compareTo(b) <= 0;
-}
-bool BigInteger::operator >= (const BigInteger& b) const {
-    return this->compareTo(b) >= 0;
-}
-bool BigInteger::operator == (const BigInteger& b) {
-    return this->equals(b);
-}
-bool BigInteger::operator != (const BigInteger& b) {
-    return !this->equals(b);
-}
+
 
 BigInteger BigInteger::operator<<(long long int y) const {
     //bigger
@@ -128,7 +115,7 @@ BigInteger BigInteger::operator<<(long long int y) const {
     return b2;
 }
 
-BigInteger BigInteger::operator>>(long long int y) const {
+BigInteger BigInteger::operator>>(const long long int& y) const {
     //smaller
     assert(y>=0);
     BigInteger b2 = *this;
@@ -161,7 +148,7 @@ BigInteger BigInteger::operator*(const BigInteger& b2)const{
 BigInteger BigInteger::operator*(const string& b2)const{
     return this->mul(b2);
 }
-BigInteger BigInteger::operator*(const long long int b2)const{
+BigInteger BigInteger::operator*(const long long int& b2)const{
     return this->mul(b2);
 }
 
@@ -175,57 +162,71 @@ BigInteger &BigInteger::operator*=(const string &b2) {
     return *this;
 }
 
-BigInteger &BigInteger::operator*=(long long int b2) {
+BigInteger &BigInteger::operator*=(const long long int& b2) {
     (*this).value = this->mul(b2).value;
     return *this;
 }
+
 
 bool BigInteger::operator<(const string &b) const {
     BigInteger tmp(b);
     return this->lessThan(tmp);
 }
-
-bool BigInteger::operator<(long long int b) const {
+bool BigInteger::operator < (const BigInteger& b) const {
+    return this->compareTo(b) < 0;
+}
+bool BigInteger::operator<(const long long int& b) const {
     BigInteger tmp(b);
     return this->lessThan(tmp);
 }
 
-bool BigInteger::operator>(const string &b) const {
+
+bool BigInteger::operator > (const BigInteger& b) const {
+    return this->compareTo(b) > 0;
+}
+bool BigInteger::operator>(const string& b) const {
+    BigInteger tmp(b);
+    return this->greaterThan(tmp);
+}
+bool BigInteger::operator>(const long long int& b) const {
     BigInteger tmp(b);
     return this->greaterThan(tmp);
 }
 
-bool BigInteger::operator>(long long int b) const {
-    BigInteger tmp(b);
-    return this->greaterThan(tmp);
-}
 
-bool BigInteger::operator<=(const string &b) const {
+bool BigInteger::operator <= (const BigInteger& b) const {
+    return this->compareTo(b) <= 0;
+}
+bool BigInteger::operator<=(const string& b) const {
+    BigInteger tmp(b);
+    return this->lessOrEqualTo(tmp);
+}
+bool BigInteger::operator<=(const long long int& b) const {
     BigInteger tmp(b);
     return this->lessOrEqualTo(tmp);
 }
 
-bool BigInteger::operator<=(long long int b) const {
-    BigInteger tmp(b);
-    return this->lessOrEqualTo(tmp);
-}
 
-bool BigInteger::operator>=(const string &b) const {
+bool BigInteger::operator >= (const BigInteger& b) const {
+    return this->compareTo(b) >= 0;
+}
+bool BigInteger::operator>=(const string& b) const {
+    BigInteger tmp(b);
+    return this->greaterOrEqualTo(tmp);
+}
+bool BigInteger::operator>=(const long long int& b) const {
     BigInteger tmp(b);
     return this->greaterOrEqualTo(tmp);
 }
 
-bool BigInteger::operator>=(long long int b) const {
-    BigInteger tmp(b);
-    return this->greaterOrEqualTo(tmp);
+bool BigInteger::operator == (const BigInteger& b) const {
+    return this->equals(b);
 }
-
-bool BigInteger::operator==(const string &b) const {
+bool BigInteger::operator==(const string& b) const {
     BigInteger tmp(b);
     return this->equalTo(tmp);
 }
-
-bool BigInteger::operator==(long long int b) const {
+bool BigInteger::operator==(const long long int& b) const {
     BigInteger tmp(b);
     return this->equalTo(tmp);
 }
@@ -235,62 +236,70 @@ bool BigInteger::operator!=(const string &b) const {
     return this->notEqualTo(tmp);
 }
 
+bool BigInteger::operator != (const BigInteger& b) const {
+    return !this->equals(b);
+}
 bool BigInteger::operator!=(long long int b) const {
     BigInteger tmp(b);
     return this->notEqualTo(tmp);
 }
+
+
 BigInteger BigInteger::operator/(const BigInteger& num){
     return div(num);
 }
-BigInteger BigInteger::operator/(const long long int num){
+BigInteger BigInteger::operator/(const long long int& num){
     return div(BigInteger(num));
 }
-BigInteger BigInteger::operator/(string s){
-    return div(BigInteger(s));
+BigInteger BigInteger::operator/(const string& num){
+    return div(BigInteger(num));
 }
+
+
 BigInteger BigInteger::operator%(const BigInteger & num){
     return mod(num);
 }
-BigInteger BigInteger::operator%(const long long int num){
+BigInteger BigInteger::operator%(const long long int& num){
     return mod(BigInteger(num));
 }
-BigInteger BigInteger::operator%(string num){
+BigInteger BigInteger::operator%(const string& num){
     return mod(BigInteger(num));
 }
+
+
 BigInteger BigInteger::operator+(const BigInteger &b2) const{
     return add(b2);
 }
-
-BigInteger BigInteger::operator+(const long long int b2) const{
+BigInteger BigInteger::operator+(const long long int& b2) const{
+    return add(BigInteger(b2));
+}
+BigInteger BigInteger::operator+(const string& b2) const{
     return add(BigInteger(b2));
 }
 
-BigInteger BigInteger::operator+(string b2) const{
-    return add(BigInteger(b2));
-}
 
 BigInteger BigInteger::operator-(const BigInteger &b2) const {
     return sub(BigInteger(b2));
 }
-
-BigInteger BigInteger::operator-(const long long int b2) const {
+BigInteger BigInteger::operator-(const long long int& b2) const {
+    return sub(BigInteger(b2));
+}
+BigInteger BigInteger::operator-(const string& b2) const {
     return sub(BigInteger(b2));
 }
 
-BigInteger BigInteger::operator-(string b2) const {
-    return sub(BigInteger(b2));
-}
+
 BigInteger& BigInteger::operator/=(const BigInteger &num) {
     *this = div(num);
     return *this;
 }
 
-BigInteger& BigInteger::operator/=(const long long int num) {
+BigInteger& BigInteger::operator/=(const long long int& num) {
     *this = div(num);
     return *this;
 }
 
-BigInteger& BigInteger::operator/=(string num) {
+BigInteger& BigInteger::operator/=(const string& num) {
     *this = div(num);
     return *this;
 }
@@ -300,12 +309,12 @@ BigInteger& BigInteger::operator%=(const BigInteger &num) {
     return *this;
 }
 
-BigInteger& BigInteger::operator%=(const long long int num) {
+BigInteger& BigInteger::operator%=(const long long int& num) {
     *this = mod(num);
     return *this;
 }
 
-BigInteger& BigInteger::operator%=(string num) {
+BigInteger& BigInteger::operator%=(const string& num) {
     *this = mod(num);
     return *this;
 }

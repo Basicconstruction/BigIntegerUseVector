@@ -61,7 +61,7 @@ void BigInteger::printSelf(const BigInteger& bigInteger){
     std::cout<<((bigInteger.signum)?'+':'-')<<std::endl;
 }
 
-void BigInteger::putInObject(vector<jbyte> &value,string transferredValue){
+void BigInteger::putInObject(vector<jbyte> &value,const string& transferredValue){
     typedef vector<jbyte>::reverse_iterator vji;
     typedef string::const_iterator si;
     vji it = value.rbegin();
@@ -97,19 +97,19 @@ int BigInteger::compareTo(vector<jbyte> v1, vector<jbyte> v2) {
 
     }
 }
-BigInteger BigInteger::value_of(long long int num) {
+BigInteger BigInteger::value_of(const long long int& num) {
     return BigInteger(num);
 }
-BigInteger BigInteger::value_of(string num) {
+BigInteger BigInteger::value_of(const string& num) {
     return BigInteger(num);
 }
-BigInteger BigInteger::value_of(BigInteger &num) {
+BigInteger BigInteger::value_of(const BigInteger &num) {
     return num;
 }
 BigInteger BigInteger::pow(int times){
     return BigInteger::pow(*this,times);
 }
-BigInteger BigInteger::pow(BigInteger& bigInteger, int times) {
+BigInteger BigInteger::pow(BigInteger& bigInteger, const int& times) {
     if(times == 0){
         return BigInteger::value_of(1);
     }else if(times == 1){
@@ -122,18 +122,18 @@ BigInteger BigInteger::pow(BigInteger& bigInteger, int times) {
     }
     return res;
 }
-BigInteger BigInteger::pow(string num, int times) {
+BigInteger BigInteger::pow(const string& num, const int& times) {
     BigInteger tmp(num);
     return BigInteger::pow(tmp,times);
 }
 
-BigInteger BigInteger::pow(long long int num, int times) {
+BigInteger BigInteger::pow(const long long int& num, const int& times) {
     BigInteger tmp(num);
     return BigInteger::pow(tmp,times);
 }
 
 BigInteger BigInteger::factorial(BigInteger num) {
-    if(num==0||num==1){
+    if(num == 0){
         return BigInteger(1);
     }
     BigInteger res;
@@ -143,10 +143,10 @@ BigInteger BigInteger::factorial(BigInteger num) {
     return res;
 }
 
-BigInteger BigInteger::factorial(string num) {
+BigInteger BigInteger::factorial(const string& num) {
     return BigInteger::factorial(BigInteger(num));
 }
-BigInteger BigInteger::factorial(int num) {
+BigInteger BigInteger::factorial(const int& num) {
     if(num==0||num==1){
         return BigInteger(1);
     }
@@ -156,7 +156,7 @@ BigInteger BigInteger::factorial(int num) {
     }
     return res;
 }
-BigInteger BigInteger::fibo(long long int p) {
+BigInteger BigInteger::fibo(const long long int& p) {
     if (p == 0) {
         return BigInteger(0);
     } else if (p == 1) {

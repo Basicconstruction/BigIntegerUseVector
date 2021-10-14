@@ -103,7 +103,7 @@ BigInteger BigInteger::add(const BigInteger &num)const{
 
     }
 }
-BigInteger BigInteger::add(long long int num)const{
+BigInteger BigInteger::add(const long long& num)const{
     BigInteger b2(num);
     return add(b2);
 }
@@ -111,6 +111,8 @@ BigInteger BigInteger::add(const string &num)const{
     BigInteger b2(num);
     return add(b2);
 }
+
+
 int BigInteger::compareTo(const BigInteger &num)const{
     if(this->signum&&!num.signum){
         return 1;
@@ -126,32 +128,33 @@ int BigInteger::compareTo(const BigInteger &num)const{
     }
 }
 
+int BigInteger::compareTo(const long long int& num) const{
+    BigInteger b2(num);
+    return compareTo(b2);
+}
+
 int BigInteger::compareTo(const string &num) const{
     BigInteger b2(num);
     return compareTo(b2);
 }
 
-int BigInteger::compareTo(long long int num) const{
-    BigInteger b2(num);
-    return compareTo(b2);
-}
+
 BigInteger BigInteger::sub(const BigInteger &num) const{
     BigInteger b2 = -num;
     return this->add(b2);
 }
-
+BigInteger BigInteger::sub(const long long& num) const{
+    BigInteger b0(num);
+    BigInteger b2 = -b0;
+    return this->add(b2);
+}
 BigInteger BigInteger::sub(const string &num) const{
     BigInteger b0(num);
     BigInteger b2 = -b0;
     return this->add(b2);
 }
 
-BigInteger BigInteger::sub(long long num) const{
-    BigInteger b0(num);
-    BigInteger b2 = -b0;
-    return this->add(b2);
-}
-bool BigInteger::equals(const BigInteger& num) {
+bool BigInteger::equals(const BigInteger& num) const {
     if (this->compareTo(num) == 0) {
         return true;
     }
@@ -159,7 +162,7 @@ bool BigInteger::equals(const BigInteger& num) {
         return false;
     }
 }
-bool BigInteger::equals(const string& num) {
+bool BigInteger::equals(const long long int& num) const {
     if (this->compareTo(num) == 0) {
         return true;
     }
@@ -167,7 +170,7 @@ bool BigInteger::equals(const string& num) {
         return false;
     }
 }
-bool BigInteger::equals(const long long int num) {
+bool BigInteger::equals(const string& num) const {
     if (this->compareTo(num) == 0) {
         return true;
     }
@@ -175,23 +178,25 @@ bool BigInteger::equals(const long long int num) {
         return false;
     }
 }
+
+
 BigInteger BigInteger::abs(const BigInteger & num) {
     BigInteger b2 = num;
     b2.signum = true;
     return b2;
 }
-
-BigInteger BigInteger::abs(string num) {
+BigInteger BigInteger::abs(const string& num) {
+    BigInteger b2 = BigInteger(num);
+    b2.signum = true;
+    return b2;
+}
+BigInteger BigInteger::abs(const long long int& num) {
     BigInteger b2 = BigInteger(num);
     b2.signum = true;
     return b2;
 }
 
-BigInteger BigInteger::abs(long long int num) {
-    BigInteger b2 = BigInteger(num);
-    b2.signum = true;
-    return b2;
-}
+
 void BigInteger::getSignaledData(vector<short>& clubs, vector<jbyte>& data) {
     vjri rit = data.rbegin();
     bool n2 = *rit>=10;
@@ -216,7 +221,7 @@ void BigInteger::getSignaledData(vector<short>& clubs, vector<jbyte>& data) {
         clubs.push_back(snr1);
     }
 }
-BigInteger BigInteger::singleMul(short b) const {
+BigInteger BigInteger::singleMul(const short& b) const {
     if(this->value.size()<=5){
         return BigInteger((*this).toLonglongValue()*b);
     }
@@ -278,37 +283,80 @@ BigInteger BigInteger::mul(const BigInteger &b2)const{
     res.signum = (this->signum==b2.signum);
     return res;
 }
-
-BigInteger BigInteger::mul(long long int b2)const{
+BigInteger BigInteger::mul(const long long int& b2)const{
     return this->mul(BigInteger(b2));
 }
-
 BigInteger BigInteger::mul(const string &b2)const{
     return this->mul(BigInteger(b2));
 }
+
+
 bool BigInteger::lessThan(const BigInteger &b)const{
     return this->compareTo(b) < 0;
 }
+bool BigInteger::lessThan(const long long int &b)const{
+    return this->compareTo(b) < 0;
+}
+bool BigInteger::lessThan(const string& b)const{
+    return this->compareTo(b) < 0;
+}
+
 
 bool BigInteger::greaterThan(const BigInteger &b)const{
     return this->compareTo(b) > 0;
 }
+bool BigInteger::greaterThan(const long long int &b)const{
+    return this->compareTo(b) > 0;
+}
+bool BigInteger::greaterThan(const string& b)const{
+    return this->compareTo(b) > 0;
+}
+
 
 bool BigInteger::lessOrEqualTo(const BigInteger &b)const{
     return this->compareTo(b) <= 0;
 }
+bool BigInteger::lessOrEqualTo(const long long int &b)const{
+    return this->compareTo(b) <= 0;
+}
+bool BigInteger::lessOrEqualTo(const string& b)const{
+    return this->compareTo(b) <= 0;
+}
+
 
 bool BigInteger::greaterOrEqualTo(const BigInteger &b)const{
     return this->compareTo(b) >= 0;
 }
+bool BigInteger::greaterOrEqualTo(const long long int &b)const{
+    return this->compareTo(b) >= 0;
+}
+bool BigInteger::greaterOrEqualTo(const string& b)const{
+    return this->compareTo(b) >= 0;
+}
+
 
 bool BigInteger::equalTo(const BigInteger &b)const{
     return this->compareTo(b) == 0;
 }
+bool BigInteger::equalTo(const string& b)const{
+    return this->compareTo(b) == 0;
+}
+bool BigInteger::equalTo(const long long int &b)const{
+    return this->compareTo(b) == 0;
+}
+
 
 bool BigInteger::notEqualTo(const BigInteger &b)const{
     return this->compareTo(b) != 0;
 }
+bool BigInteger::notEqualTo(const long long int &b)const{
+    return this->compareTo(b) != 0;
+}
+bool BigInteger::notEqualTo(const string& b)const{
+    return this->compareTo(b) != 0;
+}
+
+
 BigInteger BigInteger::div(const BigInteger &num,bool open) {
     if(open&&this->lessThan(BigInteger(9223372036854775807))){
         return BigInteger((*this).toLonglongValue()/num.toLonglongValue());
@@ -369,14 +417,16 @@ BigInteger BigInteger::div(const BigInteger &num,bool open) {
     res.signum = ((*this).signum==num.signum);
     return res;
 }
-BigInteger BigInteger::div(const long long int num){
+BigInteger BigInteger::div(const long long int& num){
     BigInteger ft(num);
     return div(ft);
 }
-BigInteger BigInteger::div(string num){
+BigInteger BigInteger::div(const string& num){
     BigInteger ft(num);
     return div(ft);
 }
+
+
 BigInteger BigInteger::mod(const BigInteger & num){
     if(this->lessThan(BigInteger(9223372036854775807))){
         return BigInteger((*this).toLonglongValue()%num.toLonglongValue());
@@ -434,10 +484,10 @@ BigInteger BigInteger::mod(const BigInteger & num){
     return tmp;
 
 }
-BigInteger BigInteger::mod(const long long int num){
+BigInteger BigInteger::mod(const long long int& num){
     return mod(BigInteger(num));
 }
-BigInteger BigInteger::mod(string num){
+BigInteger BigInteger::mod(const string& num){
     return mod(BigInteger(num));
 }
 
