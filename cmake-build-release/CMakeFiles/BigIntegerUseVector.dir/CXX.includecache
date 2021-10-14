@@ -17,8 +17,6 @@ cassert
 -
 climits
 -
-stdio.h
--
 iomanip
 -
 cstring

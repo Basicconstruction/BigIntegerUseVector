@@ -1,3 +1,176 @@
+let's start
+===
+内存结构:
+```dtd
+公有成员
+bool signum 用于存储一个数字是正数还是负数，这里默认定义0的signum=true
+vector<unsgined char> value 用于存储一个数的数据。
+    存储规则:类似于cpu的数字存储方式采用小端存储的方式。
+    示例:  100-> 
+        0 1
+          123456->
+        56 34 12
+        备注:为什么不采用大端存储？
+        这是为了效率的考量。为了尽量提高程序的效率，如果采用大端存储，当进行 加法 运算时
+        如果采用大端存储需要考虑进位，这在大端存储的形式代表着 向 vector的首位添加项目，
+        由于vector的子项占用内存是连续排列的，这意味着需要先把原有的子项向后移动一位，
+        然后把新项放置在首位，这会很严重地效率消耗(时间复杂度是O(n))。
+        而采用小端存储时，只需要在vector地末端插入新项，时间复杂度是O(1).
+
+```
+声明一个对象并初始化
+--
+```cpp
+构造函数声明
+BigInteger();
+explicit BigInteger(long long int);
+explicit BigInteger(string);
+
+
+BigInteger x;          x = 0;
+BigInteger x(10)       x = 10;
+BigInteger* p = new BigInteger(12);     p-> BigInteger(12);
+前两种方法都会对对象进行初始化，默认初始化是 0
+
+在初始化之后我们也可以使用
+BigInteger d;     d = 0;
+d = 1234;         d = 1234;
+
+额外:
+当数字足够大，比如大于 2 ^ 63-1 = 9223372036854775807
+你需要使用字符串进行初始化，因为long long int 已经不足以囊括他。
+使用字符串初始化地方式和数字一样，也可以通过字符串赋值。
+``` 
+基本操作
+--
+```cpp
+使用BigInteger时，就像和使用 int 一样，支持+-*/%
+示例:
+BigInteger x(100);
+x = x + 1;
+x = x - 1;
+x = x * 100;
+x = x / 100;
+x += 1;
+x -= 1;
+x *= 100;
+x /= 100;
+x = x % 3;
+x %= 2;
+x++;
+x--;
+甚至还可以直接使用原始方法(重载调用地方法)
++  ->   add
+-  ->   sub
+*  ->   mul
+/  ->   div
+%  ->   mod
+示例:
+    x = x.add(1);
+    ....
+对于这些操作，你也可以作用于 字符串，而不仅仅是 可以被推导到 long long int的值。
+例如:
+BigInteger x("100");
+x += "1234";
+x *= "134";
+.....
+```
+查看结果
+--
+```cpp
+那么问题来了，如何查看结果呢?
+有以下成员函数
+toString()   返回字符串形式
+    示例:
+        BigInteger x(999);
+        cout<<x.toString()<<endl;
+        "999"
+printSelf()  直接输出 类似于内存中数据的存储形式。
+    示例:
+        BigInteger y(999);
+        y.printSelf();
+        99 9 +
+不过，如果仅仅直接输出数据，可以直接使用
+    BigInteger y(999);
+    std::cout<<y;
+    备注：你也可以 使用std::cin>>y;来输入数据
+toString()和prinfSelf()也有静态函数版本
+
+static string toString(const BigInteger& bigInteger);
+static void putInObject(vector<jbyte> &value,const string& transferredValue);
+    示例:
+        BigInteger x(112);
+        string d = BigInteger::toString(x);
+        cout<<d<<endl;
+
+        BigInteger x(112);
+        BigInteger::printSelf(x);
+```
+进行比较
+--
+```cpp
+进行比较
+>    ->greaterThan
+<    ->lessThan
+>=   ->greaterOrEqualTo
+<=   ->lessOrEqualTo
+==   ->equals,equalTo
+!=   ->notEqualTo
+使用示例
+bool x = BigInteger(100)>199;
+bool y = BigInteger(188).lessThan(199);
+```
+
+内置的基本函数
+--
+```cpp
+内置的基本函数
+
+成员函数
+BigInteger pow(int);
+使用示例:
+    std::cout<<BigInteger(199).pow(999);
+备注:
+int 的表示范围已经足够大了。
+
+静态函数
+static BigInteger pow(BigInteger&,const int&);
+static BigInteger pow(const string&,const int&);
+static BigInteger pow(const long long int&,const int&);
+static BigInteger factorial(const int&);
+static BigInteger factorial(BigInteger);
+static BigInteger factorial(const string&);
+static BigInteger fibo(const long long int&);
+使用示例:
+    cout<<BigInteger::pow(BigInteger(199),100);
+    cout<<BigInteger::pow(999,999);
+    cout<<BigInteger::pow("999",999);
+    cout<<BigInteger::factorial(1000);
+    cout<<BigInteger::factorial(BigInteger(1000));
+    cout<<BigInteger::factorial("1000");
+    cout<<BigInteger::fibo(1000);
+备注:有些我们没有实现，实际上对于这factorial int 已经足够作为参数，甚至short就已经足够，因为
+计算阶乘是一个耗时的操作。对于Fibonacci数列，int也已经足够了。因为尽管我们的设计是使用尽可能大
+的数，但是考虑到性能问题，很多东西依旧无法表示，是相当耗时的行为。
+
+在使用的时候，尽量使用int型数字
+比如:使用pow时,factorial，fibo时常用的操作是
+cout<<BigInteger(999).pow(999);
+cout<<BigInteger::factorial(10000);
+cout<<BigInteger::fibo(10000);
+```
+额外进行扩展
+--
+```cpp
+BigInteger operator<<(long long y) const;
+BigInteger operator>>(const long long& y) const;
+x = 100;
+x<<2;    ->      x = 10000;
+x = 123;
+x>>2;    ->      x = 1;
+这两个是10禁止的移位函数。
+尤其是<<,被应用在乘法的构建。
+```
 Performance Testing
 ==
 test platform
