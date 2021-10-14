@@ -206,6 +206,9 @@ gun mingw
 Amd Ryzen 7 4000  
 microsoft window 11  
 
+本项目的测试数据在 vector 列。
+--
+
 |aspect|string|python|vector|java|julia|
 |:---: | :---:|:---:|:---:|:---:|:---:|
 |factorial(10) | | | | | |
