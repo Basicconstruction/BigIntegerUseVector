@@ -4,22 +4,13 @@
 int main() {
     clock_t begin = clock();
     for(int i = 0;i<1;i++){
-//        cout<<BigInteger::toString(BigInteger::pow(2,10000));
-//        cout<<BigInteger::toString(BigInteger::factorial(3000));
-//        BigInteger::printSelf(BigInteger::fibo(100));
-//        std::cout<<BigInteger::pow(8,1000).toString()<<endl;
-//        BigInteger::pow(8,1000).printSelf();
-//        std::cout<<BigInteger(2).pow(10000)<<endl;
-//        std::cout<<BigInteger::toString(BigInteger::pow(8,1000));
-//        BigInteger x(3);
-//        cin>>x;
-//        cout<<x.pow(1000);
-//        cout<<BigInteger::fibo(1000).toString();
-        cout<<BigInteger(2371928)%199;
-        int j = 688;
-        for(int i = 1000000;i<1010000;i++){
-            cout<<(BigInteger(i)%j).toLonglongValue()<<endl;
+        BigInteger res;
+        res = 1;
+        for(int i = 1;i <=10000;i++){
+            res *= i;
         }
+        cout<<res<<endl;
+//        cout<<BigInteger::factorial(10000)<<endl;
 
     }
     clock_t end = clock();

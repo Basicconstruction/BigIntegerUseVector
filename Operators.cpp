@@ -3,11 +3,10 @@
 //
 
 #include "BigInteger.h"
-typedef std::vector<jbyte>::iterator LI;
-typedef std::vector<jbyte>::reverse_iterator RI;
 using std::vector;
 using std::list;
 using std::deque;
+BigInteger& BigInteger::operator = (const BigInteger& num)= default;
 BigInteger& BigInteger::operator=(long long int num) {
     *this = BigInteger(num);
     return *this;
@@ -26,28 +25,28 @@ BigInteger BigInteger::operator-()const{
     return b2;
 }
 
-BigInteger& BigInteger::operator+=(BigInteger num) {
-    this->add(num);
+BigInteger& BigInteger::operator+=(const BigInteger& num) {
+    *this = this->add(num);
     return *this;
 }
 BigInteger& BigInteger::operator+=(const string&num) {
-    this->add(num);
+    *this = this->add(num);
     return *this;
 }
 BigInteger& BigInteger::operator+=(const long long int num) {
-    this->add(num);
+    *this = this->add(num);
     return *this;
 }
-BigInteger& BigInteger::operator-=(BigInteger num) {
-    this->sub(num);
+BigInteger& BigInteger::operator-=(const BigInteger& num) {
+    *this = this->sub(num);
     return *this;
 }
 BigInteger& BigInteger::operator-=(const string& num) {
-    this->sub(num);
+    *this = this->sub(num);
     return *this;
 }
 BigInteger& BigInteger::operator-=(const long long int num) {
-    this->sub(num);
+    *this = this->sub(num);
     return *this;
 }
 //pre
@@ -72,16 +71,16 @@ BigInteger BigInteger::operator--(int dummy) {
     (*this) -= 1;
     return x;
 }
-bool BigInteger::operator < (const BigInteger& b) {
+bool BigInteger::operator < (const BigInteger& b) const {
     return this->compareTo(b) < 0;
 }
-bool BigInteger::operator > (const BigInteger& b) {
+bool BigInteger::operator > (const BigInteger& b) const {
     return this->compareTo(b) > 0;
 }
-bool BigInteger::operator <= (const BigInteger& b) {
+bool BigInteger::operator <= (const BigInteger& b) const {
     return this->compareTo(b) <= 0;
 }
-bool BigInteger::operator >= (const BigInteger& b) {
+bool BigInteger::operator >= (const BigInteger& b) const {
     return this->compareTo(b) >= 0;
 }
 bool BigInteger::operator == (const BigInteger& b) {
@@ -156,13 +155,13 @@ BigInteger BigInteger::operator>>(long long int y) const {
     b2.value = vi;
     return b2;
 }
-BigInteger BigInteger::operator*(const BigInteger& b2) const{
+BigInteger BigInteger::operator*(const BigInteger& b2)const{
     return this->mul(b2);
 }
-BigInteger BigInteger::operator*(const string& b2) const{
+BigInteger BigInteger::operator*(const string& b2)const{
     return this->mul(b2);
 }
-BigInteger BigInteger::operator*(const long long int b2) const{
+BigInteger BigInteger::operator*(const long long int b2)const{
     return this->mul(b2);
 }
 
@@ -181,62 +180,62 @@ BigInteger &BigInteger::operator*=(long long int b2) {
     return *this;
 }
 
-bool BigInteger::operator<(const string &b) {
+bool BigInteger::operator<(const string &b) const {
     BigInteger tmp(b);
     return this->lessThan(tmp);
 }
 
-bool BigInteger::operator<(long long int b) {
+bool BigInteger::operator<(long long int b) const {
     BigInteger tmp(b);
     return this->lessThan(tmp);
 }
 
-bool BigInteger::operator>(const string &b) {
+bool BigInteger::operator>(const string &b) const {
     BigInteger tmp(b);
     return this->greaterThan(tmp);
 }
 
-bool BigInteger::operator>(long long int b) {
+bool BigInteger::operator>(long long int b) const {
     BigInteger tmp(b);
     return this->greaterThan(tmp);
 }
 
-bool BigInteger::operator<=(const string &b) {
+bool BigInteger::operator<=(const string &b) const {
     BigInteger tmp(b);
     return this->lessOrEqualTo(tmp);
 }
 
-bool BigInteger::operator<=(long long int b) {
+bool BigInteger::operator<=(long long int b) const {
     BigInteger tmp(b);
     return this->lessOrEqualTo(tmp);
 }
 
-bool BigInteger::operator>=(const string &b) {
+bool BigInteger::operator>=(const string &b) const {
     BigInteger tmp(b);
     return this->greaterOrEqualTo(tmp);
 }
 
-bool BigInteger::operator>=(long long int b) {
+bool BigInteger::operator>=(long long int b) const {
     BigInteger tmp(b);
     return this->greaterOrEqualTo(tmp);
 }
 
-bool BigInteger::operator==(const string &b) {
+bool BigInteger::operator==(const string &b) const {
     BigInteger tmp(b);
     return this->equalTo(tmp);
 }
 
-bool BigInteger::operator==(long long int b) {
+bool BigInteger::operator==(long long int b) const {
     BigInteger tmp(b);
     return this->equalTo(tmp);
 }
 
-bool BigInteger::operator!=(const string &b) {
+bool BigInteger::operator!=(const string &b) const {
     BigInteger tmp(b);
     return this->notEqualTo(tmp);
 }
 
-bool BigInteger::operator!=(long long int b) {
+bool BigInteger::operator!=(long long int b) const {
     BigInteger tmp(b);
     return this->notEqualTo(tmp);
 }
@@ -258,7 +257,58 @@ BigInteger BigInteger::operator%(const long long int num){
 BigInteger BigInteger::operator%(string num){
     return mod(BigInteger(num));
 }
+BigInteger BigInteger::operator+(const BigInteger &b2) const{
+    return add(b2);
+}
 
+BigInteger BigInteger::operator+(const long long int b2) const{
+    return add(BigInteger(b2));
+}
+
+BigInteger BigInteger::operator+(string b2) const{
+    return add(BigInteger(b2));
+}
+
+BigInteger BigInteger::operator-(const BigInteger &b2) const {
+    return sub(BigInteger(b2));
+}
+
+BigInteger BigInteger::operator-(const long long int b2) const {
+    return sub(BigInteger(b2));
+}
+
+BigInteger BigInteger::operator-(string b2) const {
+    return sub(BigInteger(b2));
+}
+BigInteger& BigInteger::operator/=(const BigInteger &num) {
+    *this = div(num);
+    return *this;
+}
+
+BigInteger& BigInteger::operator/=(const long long int num) {
+    *this = div(num);
+    return *this;
+}
+
+BigInteger& BigInteger::operator/=(string num) {
+    *this = div(num);
+    return *this;
+}
+
+BigInteger& BigInteger::operator%=(const BigInteger &num) {
+    *this = mod(num);
+    return *this;
+}
+
+BigInteger& BigInteger::operator%=(const long long int num) {
+    *this = mod(num);
+    return *this;
+}
+
+BigInteger& BigInteger::operator%=(string num) {
+    *this = mod(num);
+    return *this;
+}
 
 
 

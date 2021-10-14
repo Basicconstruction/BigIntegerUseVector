@@ -7,7 +7,7 @@ typedef std::vector<jbyte>::iterator vji;
 typedef std::vector<jbyte>::reverse_iterator vjri;
 typedef std::vector<short>::iterator vsi;
 typedef std::vector<short>::reverse_iterator vsri;
-BigInteger& BigInteger::add(const BigInteger &num){
+BigInteger BigInteger::add(const BigInteger &num)const{
     short carry = 0;
     vector<jbyte> tem = this->value;
     vector<jbyte> added = num.value;
@@ -47,18 +47,21 @@ BigInteger& BigInteger::add(const BigInteger &num){
         if(carry>0){
             longOne.push_back(1);
         }
-        this->value.swap(longOne);
-        return *this;
+        BigInteger res;
+        res.signum = this->signum;
+        res.value.swap(longOne);
+        return res;
     }else{
-        int res = compareTo(tem,added);
-        if(res==0){
-            *this = BigInteger(0);
-            return *this;
-        }else if(res==1){
+        int cres = compareTo(tem, added);
+        BigInteger res;
+        if(cres == 0){
+            return BigInteger(0);
+        }else if(cres == 1){
+            res.signum = this->signum;
             longOne = tem;
             shortOne = added;
         }else{
-            this->signum = !this->signum;
+            res.signum = !this->signum;
             longOne = added;
             shortOne = tem;
         }
@@ -87,24 +90,24 @@ BigInteger& BigInteger::add(const BigInteger &num){
             }
         }
         assert(carry==0);
-        this->value.swap(longOne);
-        std::vector<jbyte>::iterator back_i = this->value.end()-1;
-        for(;back_i!=this->value.begin();back_i--){
+        res.value.swap(longOne);
+        std::vector<jbyte>::iterator back_i = res.value.end()-1;
+        for(;back_i!=res.value.begin();back_i--){
             if(*back_i==0){
-                this->value.erase(back_i);
+                res.value.erase(back_i);
             }else{
                 break;
             }
         }
-        return *this;
+        return res;
 
     }
 }
-BigInteger& BigInteger::add(long long int num){
+BigInteger BigInteger::add(long long int num)const{
     BigInteger b2(num);
     return add(b2);
 }
-BigInteger& BigInteger::add(const string &num){
+BigInteger BigInteger::add(const string &num)const{
     BigInteger b2(num);
     return add(b2);
 }
@@ -123,27 +126,27 @@ int BigInteger::compareTo(const BigInteger &num)const{
     }
 }
 
-int BigInteger::compareTo(const string &num) {
+int BigInteger::compareTo(const string &num) const{
     BigInteger b2(num);
     return compareTo(b2);
 }
 
-int BigInteger::compareTo(long long int num) {
+int BigInteger::compareTo(long long int num) const{
     BigInteger b2(num);
     return compareTo(b2);
 }
-BigInteger& BigInteger::sub(const BigInteger &num) {
+BigInteger BigInteger::sub(const BigInteger &num) const{
     BigInteger b2 = -num;
     return this->add(b2);
 }
 
-BigInteger& BigInteger::sub(const string &num) {
+BigInteger BigInteger::sub(const string &num) const{
     BigInteger b0(num);
     BigInteger b2 = -b0;
     return this->add(b2);
 }
 
-BigInteger& BigInteger::sub(long long num) {
+BigInteger BigInteger::sub(long long num) const{
     BigInteger b0(num);
     BigInteger b2 = -b0;
     return this->add(b2);
@@ -214,7 +217,7 @@ void BigInteger::getSignaledData(vector<short>& clubs, vector<jbyte>& data) {
     }
 }
 BigInteger BigInteger::singleMul(short b) const {
-    if(this->lessThan(BigInteger(922337203685477580))){
+    if(this->value.size()<=5){
         return BigInteger((*this).toLonglongValue()*b);
     }
     if(b==0){
@@ -276,11 +279,11 @@ BigInteger BigInteger::mul(const BigInteger &b2)const{
     return res;
 }
 
-BigInteger BigInteger::mul(long long int b2) const{
+BigInteger BigInteger::mul(long long int b2)const{
     return this->mul(BigInteger(b2));
 }
 
-BigInteger BigInteger::mul(const string &b2) const{
+BigInteger BigInteger::mul(const string &b2)const{
     return this->mul(BigInteger(b2));
 }
 bool BigInteger::lessThan(const BigInteger &b)const{
@@ -306,8 +309,8 @@ bool BigInteger::equalTo(const BigInteger &b)const{
 bool BigInteger::notEqualTo(const BigInteger &b)const{
     return this->compareTo(b) != 0;
 }
-BigInteger BigInteger::div(const BigInteger &num) {
-    if(this->lessThan(BigInteger(9223372036854775807))){
+BigInteger BigInteger::div(const BigInteger &num,bool open) {
+    if(open&&this->lessThan(BigInteger(9223372036854775807))){
         return BigInteger((*this).toLonglongValue()/num.toLonglongValue());
     }
     if(num.equalTo(BigInteger(0))){
@@ -329,10 +332,9 @@ BigInteger BigInteger::div(const BigInteger &num) {
     string s = tmp.toString();
     size_t len = s.length();
     size_t p = 0;
-    BigInteger b = num;
     for(;p<len;){
         BigInteger y(string(s.begin(),s.begin()+1+p));
-        if(y<b){
+        if(y<num){
             p++;
         }else{
             break;
@@ -343,19 +345,19 @@ BigInteger BigInteger::div(const BigInteger &num) {
     int newp = p;
     BigInteger res;
     while(true){
-        if(*t<b){
+        if(*t<num){
             res = (res<<1);
         }else{
-            cal = divHelp(*t,b);
+            cal = divHelp(*t,num);
             res = (res<<1).add(cal);//unpredict problem when use +
         }
-        tmp -= ((b*cal)<<(len-1-newp));
+        tmp -= ((num*cal)<<(len-1-newp));
         if(res.toString().length()==len-p){
             break;
         }
         newp++;
         {
-            BigInteger foyer = (*t).sub((b*cal));
+            BigInteger foyer = (*t).sub((num*cal));
             if(foyer.equalTo(BigInteger(0))){
                 t = new BigInteger(static_cast<int>((*this).toString()[newp]-'0'));
             }else{
@@ -379,14 +381,11 @@ BigInteger BigInteger::mod(const BigInteger & num){
     if(this->lessThan(BigInteger(9223372036854775807))){
         return BigInteger((*this).toLonglongValue()%num.toLonglongValue());
     }
-    BigInteger res;
     if(compareTo(num.value,(*this).value)==1){
         if(this->signum){
-            res.value = (*this).value;
-            return res;
+            return *this;
         }else{
-            res = (*this).add(num);
-            return res;
+            return (*this)+num;
         }
     }
     BigInteger tmp = (*this);
@@ -398,10 +397,10 @@ BigInteger BigInteger::mod(const BigInteger & num){
     string s = tmp.toString();
     size_t len = s.length();
     size_t p = 0;
-    BigInteger b = num;
+//    BigInteger b = num;
     for(;p<len;){
         BigInteger y(string(s.begin(),s.begin()+1+p));
-        if(y<b){
+        if(y<num){
             p++;
         }else{
             break;
@@ -410,21 +409,20 @@ BigInteger BigInteger::mod(const BigInteger & num){
     BigInteger* t = new BigInteger(string(s.begin(),s.begin()+1+p));
     short cal;
     int newp = p;
-    res = 0;
+    int resultLen = 0;
     while(true){
-        if(*t<b){
-            res = (res<<1);
+        if(*t<num){
         }else{
-            cal = divHelp(*t,b);
-            res = (res<<1).add(cal);//unpredict problem when use +
+            cal = divHelp(*t,num);
         }
-        tmp -= ((b*cal)<<(len-1-newp));
-        if(res.toString().length()==len-p){
+        resultLen++;
+        tmp -= ((num*cal)<<(len-1-newp));
+        if(resultLen==len-p){
             break;
         }
         newp++;
         {
-            BigInteger foyer = (*t).sub((b*cal));
+            BigInteger foyer = (*t).sub((num*cal));
             if(foyer.equalTo(BigInteger(0))){
                 t = new BigInteger(static_cast<int>((*this).toString()[newp]-'0'));
             }else{
@@ -442,6 +440,10 @@ BigInteger BigInteger::mod(const long long int num){
 BigInteger BigInteger::mod(string num){
     return mod(BigInteger(num));
 }
+
+
+
+
 
 
 
