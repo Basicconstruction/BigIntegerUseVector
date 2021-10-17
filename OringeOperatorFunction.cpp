@@ -357,7 +357,7 @@ bool BigInteger::notEqualTo(const string& b)const{
 }
 
 
-BigInteger BigInteger::div(const BigInteger &num,bool open) {
+BigInteger BigInteger::div(const BigInteger &num,bool open)const {
     if(open&&this->lessThan(BigInteger(9223372036854775807))){
         return BigInteger((*this).toLonglongValue()/num.toLonglongValue());
     }
@@ -417,17 +417,17 @@ BigInteger BigInteger::div(const BigInteger &num,bool open) {
     res.signum = ((*this).signum==num.signum);
     return res;
 }
-BigInteger BigInteger::div(const long long int& num){
+BigInteger BigInteger::div(const long long int& num)const{
     BigInteger ft(num);
     return div(ft);
 }
-BigInteger BigInteger::div(const string& num){
+BigInteger BigInteger::div(const string& num)const{
     BigInteger ft(num);
     return div(ft);
 }
 
 
-BigInteger BigInteger::mod(const BigInteger & num){
+BigInteger BigInteger::mod(const BigInteger & num)const{
     if(this->lessThan(BigInteger(9223372036854775807))){
         return BigInteger((*this).toLonglongValue()%num.toLonglongValue());
     }
@@ -484,18 +484,26 @@ BigInteger BigInteger::mod(const BigInteger & num){
     return tmp;
 
 }
-BigInteger BigInteger::mod(const long long int& num){
+BigInteger BigInteger::mod(const long long int& num)const{
     return mod(BigInteger(num));
 }
-BigInteger BigInteger::mod(const string& num){
+BigInteger BigInteger::mod(const string& num)const{
     return mod(BigInteger(num));
 }
-
-
-
-
-
-
-
+BigInteger BigInteger::sqrt()const{
+    BigInteger res(1);
+    bool t = true;
+    while (t) {
+        res = (res + (*this) / res) / 2;
+        t = (res * res <= (*this) && (res + 1) * (res + 1) > (*this)) ||
+                (res * res >= (*this) && (res - 1) * (res - 1) < (*this));
+        t = !t;
+    }
+    return (res * res <= (*this) && (res + 1) * (res + 1) > (*this)) ? res : res - 1;
+}
+BigInteger& BigInteger::toAbs(){
+    this->signum = true;
+    return *this;
+}
 
 

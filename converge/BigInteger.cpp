@@ -4,6 +4,7 @@
 #include <iterator>
 #include "BigInteger.h"
 using namespace std;
+//Constructer.cpp
 BigInteger::~BigInteger() = default;//并没有指针型对象，无需显式释放空间
 BigInteger::BigInteger(long long int initNum) {
     if (initNum >= 0) {
@@ -49,6 +50,15 @@ BigInteger::BigInteger(){
     this->value = vector<jbyte>(1,0);
 }
 
+
+
+
+
+
+
+//--Constructor.cpp
+
+//----BigInteger.cpp
 using namespace std;
 using namespace std::string_literals;
 ostream& operator<<(ostream& os,const BigInteger & num){
@@ -262,6 +272,16 @@ long long int BigInteger::toLonglongValue()const{
     }
     return this->signum?res:-res;
 }
+
+
+
+
+
+//-----BigInteger.cpp
+
+//--OringeOperatorFunction.cpp
+
+
 typedef std::vector<jbyte>::iterator vji;
 typedef std::vector<jbyte>::reverse_iterator vjri;
 typedef std::vector<short>::iterator vsi;
@@ -616,7 +636,7 @@ bool BigInteger::notEqualTo(const string& b)const{
 }
 
 
-BigInteger BigInteger::div(const BigInteger &num,bool open) {
+BigInteger BigInteger::div(const BigInteger &num,bool open)const {
     if(open&&this->lessThan(BigInteger(9223372036854775807))){
         return BigInteger((*this).toLonglongValue()/num.toLonglongValue());
     }
@@ -676,17 +696,17 @@ BigInteger BigInteger::div(const BigInteger &num,bool open) {
     res.signum = ((*this).signum==num.signum);
     return res;
 }
-BigInteger BigInteger::div(const long long int& num){
+BigInteger BigInteger::div(const long long int& num)const{
     BigInteger ft(num);
     return div(ft);
 }
-BigInteger BigInteger::div(const string& num){
+BigInteger BigInteger::div(const string& num)const{
     BigInteger ft(num);
     return div(ft);
 }
 
 
-BigInteger BigInteger::mod(const BigInteger & num){
+BigInteger BigInteger::mod(const BigInteger & num)const{
     if(this->lessThan(BigInteger(9223372036854775807))){
         return BigInteger((*this).toLonglongValue()%num.toLonglongValue());
     }
@@ -743,12 +763,42 @@ BigInteger BigInteger::mod(const BigInteger & num){
     return tmp;
 
 }
-BigInteger BigInteger::mod(const long long int& num){
+BigInteger BigInteger::mod(const long long int& num)const{
     return mod(BigInteger(num));
 }
-BigInteger BigInteger::mod(const string& num){
+BigInteger BigInteger::mod(const string& num)const{
     return mod(BigInteger(num));
 }
+BigInteger BigInteger::sqrt()const{
+    BigInteger res(1);
+    bool t = true;
+    while (t) {
+        res = (res + (*this) / res) / 2;
+        t = (res * res <= (*this) && (res + 1) * (res + 1) > (*this)) ||
+                (res * res >= (*this) && (res - 1) * (res - 1) < (*this));
+        t = !t;
+    }
+    return (res * res <= (*this) && (res + 1) * (res + 1) > (*this)) ? res : res - 1;
+}
+BigInteger& BigInteger::toAbs(){
+    this->signum = true;
+    return *this;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//--OringeOperatorFunction.cpp
+
+//---Operators.cpp
 BigInteger& BigInteger::operator = (const BigInteger& num)= default;
 BigInteger& BigInteger::operator=(const long long int& num) {
     *this = BigInteger(num);
@@ -988,24 +1038,24 @@ bool BigInteger::operator!=(long long int b) const {
 }
 
 
-BigInteger BigInteger::operator/(const BigInteger& num){
+BigInteger BigInteger::operator/(const BigInteger& num)const{
     return div(num);
 }
-BigInteger BigInteger::operator/(const long long int& num){
+BigInteger BigInteger::operator/(const long long int& num)const{
     return div(BigInteger(num));
 }
-BigInteger BigInteger::operator/(const string& num){
+BigInteger BigInteger::operator/(const string& num)const{
     return div(BigInteger(num));
 }
 
 
-BigInteger BigInteger::operator%(const BigInteger & num){
+BigInteger BigInteger::operator%(const BigInteger & num)const{
     return mod(num);
 }
-BigInteger BigInteger::operator%(const long long int& num){
+BigInteger BigInteger::operator%(const long long int& num)const{
     return mod(BigInteger(num));
 }
-BigInteger BigInteger::operator%(const string& num){
+BigInteger BigInteger::operator%(const string& num)const{
     return mod(BigInteger(num));
 }
 
@@ -1061,57 +1111,4 @@ BigInteger& BigInteger::operator%=(const string& num) {
     *this = mod(num);
     return *this;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//---Operators.cpp

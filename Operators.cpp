@@ -245,24 +245,24 @@ bool BigInteger::operator!=(long long int b) const {
 }
 
 
-BigInteger BigInteger::operator/(const BigInteger& num){
+BigInteger BigInteger::operator/(const BigInteger& num)const{
     return div(num);
 }
-BigInteger BigInteger::operator/(const long long int& num){
+BigInteger BigInteger::operator/(const long long int& num)const{
     return div(BigInteger(num));
 }
-BigInteger BigInteger::operator/(const string& num){
+BigInteger BigInteger::operator/(const string& num)const{
     return div(BigInteger(num));
 }
 
 
-BigInteger BigInteger::operator%(const BigInteger & num){
+BigInteger BigInteger::operator%(const BigInteger & num)const{
     return mod(num);
 }
-BigInteger BigInteger::operator%(const long long int& num){
+BigInteger BigInteger::operator%(const long long int& num)const{
     return mod(BigInteger(num));
 }
-BigInteger BigInteger::operator%(const string& num){
+BigInteger BigInteger::operator%(const string& num)const{
     return mod(BigInteger(num));
 }
 
