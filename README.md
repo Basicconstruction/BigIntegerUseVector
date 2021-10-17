@@ -189,6 +189,32 @@ x>>2;    ->      x = 1;
 这两个是10禁止的移位函数。
 尤其是<<,被应用在乘法的构建。
 ```
+使用示例
+--
+```cpp
+clock_t begin = clock();
+for(int i = 0;i<1;i++){
+    cout<<BigInteger(999).pow(99)-BigInteger(999).pow(99).excel_sqrt().pow(2)<<endl;
+    BigInteger *x = new BigInteger(0);
+    *x = BigInteger(999).pow(99)/BigInteger(999).pow(99).excel_sqrt();
+    cout<<*x<<endl;
+    BigInteger y = BigInteger(999).pow(99).mod(BigInteger(999).pow(99).excel_sqrt());
+    cout<<y<<endl;
+    cout<<(((*x) * BigInteger(999).pow(99).excel_sqrt()+y) == BigInteger(999).pow(99)?"true":"false");
+}
+clock_t end = clock();
+cout<<endl<<end-begin<<"ms"<<endl;
+
+---output:
+504357043537230224403818104856985579375392063109852346587655295806487996311782938786119122436843090692294903254800577215
+27806795342785448683795207783
+300948142535997006897791156452603268672720621383126034090785508072767585766750508704752007560412692094713609658473280585
+88219188780734175482449383597
+203408901001233217506026948404382310702671441726726312496869787733720410545032430081367114876430398597581293596327296629
+39587606562051273201345824187
+true
+1026ms
+```
 Performance Testing
 ==
 test platform

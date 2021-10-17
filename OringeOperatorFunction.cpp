@@ -507,9 +507,12 @@ BigInteger BigInteger::newton_sqrt()const{
     return (res * res <= (*this) && (res + 1) * (res + 1) > (*this)) ? res : res - 1;
 }
 BigInteger BigInteger::excel_sqrt() const {
-    int len;
-    len = this->value.size()/2;
-    BigInteger res(1);
+    short len;
+    short ori;
+    short num = short(*(this->value.rbegin()));
+    ori =  sqrtDict[num];
+    len = this->value.size();
+    BigInteger res(ori);
     res = res<<len;
     bool t = true;
     while (t) {
