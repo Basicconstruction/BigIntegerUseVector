@@ -153,7 +153,7 @@ public:
     BigInteger mod(const BigInteger & num)const;
     BigInteger mod(const long long int& num)const;
     BigInteger mod(const string& num)const;
-    BigInteger sqrt()const;
+    BigInteger newton_sqrt()const;
     static void getSignaledData(vector<short> &clubs, vector<jbyte>& data);
     static BigInteger value_of(const long long int&);
     static BigInteger value_of(const string&);

@@ -490,8 +490,27 @@ BigInteger BigInteger::mod(const long long int& num)const{
 BigInteger BigInteger::mod(const string& num)const{
     return mod(BigInteger(num));
 }
-BigInteger BigInteger::sqrt()const{
+BigInteger& BigInteger::toAbs(){
+    this->signum = true;
+    return *this;
+}
+BigInteger BigInteger::newton_sqrt()const{
     BigInteger res(1);
+    bool t = true;
+    while (t) {
+        res = (res + (*this) / res) / 2;
+        t = (res * res <= (*this) && (res + 1) * (res + 1) > (*this)) ||
+                (res * res >= (*this) && (res - 1) * (res - 1) < (*this));
+        t = !t;
+        cout<<t<<endl;
+    }
+    return (res * res <= (*this) && (res + 1) * (res + 1) > (*this)) ? res : res - 1;
+}
+BigInteger BigInteger::excel_sqrt() const {
+    int len;
+    len = this->value.size()/2;
+    BigInteger res(1);
+    res = res<<len;
     bool t = true;
     while (t) {
         res = (res + (*this) / res) / 2;
@@ -501,9 +520,6 @@ BigInteger BigInteger::sqrt()const{
     }
     return (res * res <= (*this) && (res + 1) * (res + 1) > (*this)) ? res : res - 1;
 }
-BigInteger& BigInteger::toAbs(){
-    this->signum = true;
-    return *this;
-}
+
 
 

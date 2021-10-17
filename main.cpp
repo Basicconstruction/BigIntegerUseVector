@@ -4,7 +4,7 @@
 int main() {
     clock_t begin = clock();
     for(int i = 0;i<1;i++){
-        cout<<BigInteger(99).pow(999);
+        cout<<BigInteger(99).pow(99).excel_sqrt();
     }
     clock_t end = clock();
     cout<<endl<<end-begin<<"ms"<<endl;
