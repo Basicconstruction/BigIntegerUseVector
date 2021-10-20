@@ -1,7 +1,3 @@
-//
-// Created by hay boy on 2021/9/30.
-//
-
 #ifndef BIGINTEGERUSEVECTOR_BIGINTEGER_H
 #define BIGINTEGERUSEVECTOR_BIGINTEGER_H
 #include <iostream>
@@ -18,35 +14,29 @@
 #include <deque>
 #include <sstream>
 #include <iterator>
-
-#include "Utils.h"
-using std::chrono::high_resolution_clock;
-using std::chrono::milliseconds;
 using namespace std;
-using namespace std::string_literals;
-typedef unsigned char jbyte;
 typedef long long int ll;
 class BigInteger{
 public:
-    vector<jbyte> value;
+    vector<int> value;
     bool signum;
     BigInteger();
     explicit BigInteger(long long int);
     explicit BigInteger(string);
-    static void putInObject(vector<jbyte> &value, ll transferredValue);
+    static void putInObject(vector<int> &value, ll transferredValue);
     friend ostream& operator<<(ostream& os,const BigInteger & num);
     friend istream& operator>>(istream& is,BigInteger & num);
     void printSelf() const;
     static void printSelf(const BigInteger& bigInteger);
     string toString() const;
     static string toString(const BigInteger& bigInteger);
-    static void putInObject(vector<jbyte> &value,const string& transferredValue);
+    static void putInObject(vector<int> &value,const string& transferredValue);
     BigInteger(const BigInteger&);
     ~BigInteger();
     BigInteger add(const BigInteger&)const;
     BigInteger add(const long long&)const;
     BigInteger add(const string&)const;
-    static int compareTo(vector<jbyte> v1,vector<jbyte> v2);
+    static int compareTo(vector<int> v1,vector<int> v2);
     int compareTo(const BigInteger&)const;
     int compareTo(const string&)const;
     int compareTo(const long long int&)const;
@@ -123,7 +113,7 @@ public:
     static BigInteger abs(const long long int&);
     BigInteger operator<<(long long y) const;
     BigInteger operator>>(const long long& y) const;
-    BigInteger singleMul(const short& b) const;
+    BigInteger singleMul(const int& b) const;
     BigInteger mul(const BigInteger& b2)const;
     BigInteger mul(const string& b2)const;
     BigInteger mul(const long long int& b2)const;
@@ -155,7 +145,6 @@ public:
     BigInteger mod(const string& num)const;
     BigInteger newton_sqrt()const;
     BigInteger excel_sqrt()const;
-    static void getSignaledData(vector<short> &clubs, vector<jbyte>& data);
     static BigInteger value_of(const long long int&);
     static BigInteger value_of(const string&);
     static BigInteger value_of(const BigInteger&);

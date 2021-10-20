@@ -1,8 +1,4 @@
-//
-// Created by hay boy on 2021/9/30.
-//
 #include "BigInteger.h"
-#include "Utils.h"
 using namespace std;
 using namespace std::string_literals;
 BigInteger::~BigInteger() = default;//并没有指针型对象，无需显式释放空间
@@ -14,15 +10,15 @@ BigInteger::BigInteger(long long int initNum) {
         initNum = -initNum;
         signum = false;
     }
-    int p = 2;
+    int p = 4;
     ll tmp = initNum;
-    tmp/=100;
+    tmp/=10000;
     while(tmp>0){
-        tmp/=100;
-        p+=2;
+        tmp/=10000;
+        p+=4;
     }
-    int eff_size = p/2;
-    this->value = vector<jbyte>(eff_size);
+    int eff_size = p/4;
+    this->value = vector<int>(eff_size);
     putInObject(this->value,initNum);
 }
 BigInteger::BigInteger(string initStr) {
@@ -37,16 +33,16 @@ BigInteger::BigInteger(string initStr) {
         this->signum = true;
     }
     unsigned int size = initStr.size();
-    size = size % 2==0?size/2:size/2+1;
-    this->value = vector<jbyte>(size);
+    size = size % 4==0?size/4:size/4+1;
+    this->value = vector<int>(size);
     putInObject(this->value,initStr);
 }
 BigInteger::BigInteger(const BigInteger &bigInteger) {
     this->signum = bigInteger.signum;
-    this->value = vector<jbyte>(bigInteger.value);//like .assign()
+    this->value = vector<int>(bigInteger.value);//like .assign()
 }
 BigInteger::BigInteger(){
     this->signum = true;
-    this->value = vector<jbyte>(1,0);
+    this->value = vector<int>(1,0);
 }
 

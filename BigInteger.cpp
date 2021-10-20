@@ -8,9 +8,9 @@ ostream& operator<<(ostream& os,const BigInteger & num){
     if(!num.signum){
         os<<"-";
     }
-    os<<short(*it++);
+    os<<*it++;
     for(;it!=num.value.rend();it++){
-        os<<std::setw(2)<<short(*it);
+        os<<std::setw(4)<<*it;
     }
     os<<setfill(fillc);
     return os;
@@ -24,11 +24,10 @@ istream &operator>>(istream & is, BigInteger & num) {
     return is;
 }
 
-void BigInteger::putInObject(vector<jbyte>& value,ll transferredValue){
-    typedef vector<jbyte>::iterator vji;
-    for(unsigned char & it : value){
-        it = static_cast<jbyte>(transferredValue%100);
-        transferredValue/=100;
+void BigInteger::putInObject(vector<int>& value,ll transferredValue){
+    for(int & it : value){
+        it = static_cast<int>(transferredValue%10000);
+        transferredValue/=10000;
     }
 }
 string BigInteger::toString() const{
@@ -38,15 +37,19 @@ string BigInteger::toString(const BigInteger& bigInteger){
     string s;
     s+= bigInteger.signum ? "" : "-";
     ostringstream os;
-    std::vector<jbyte>::const_reverse_iterator it = bigInteger.value.rbegin();
-    os<<short(*it);
+    std::vector<int>::const_reverse_iterator it = bigInteger.value.rbegin();
+    os<<*it;
     ++it;
     for(;it!=bigInteger.value.rend();it++){
-        jbyte r = *it;
-        if(int(r)>=10){
-            os<<(short)r;
+        int r = *it;
+        if(r>=1000){
+            os<<r;
+        }else if(r>=100){
+            os<<0<<r;
+        }else if(r>=10){
+            os<<"00"<<r;
         }else{
-            os<<0<<short(r);
+            os<<"000"<<r;
         }
     }
     s+= os.str();
@@ -61,24 +64,31 @@ void BigInteger::printSelf(const BigInteger& bigInteger){
     std::cout<<((bigInteger.signum)?'+':'-')<<std::endl;
 }
 
-void BigInteger::putInObject(vector<jbyte> &value,const string& transferredValue){
-    typedef vector<jbyte>::reverse_iterator vji;
-    typedef string::const_iterator si;
-    vji it = value.rbegin();
-    si sit = transferredValue.begin();
-    if(transferredValue.length()%2!=0){
-        *it = static_cast<jbyte>(static_cast<short>(*sit-'0'));
-        it++;sit++;
+void BigInteger::putInObject(vector<int> &value,const string& transferredValue){
+    typedef vector<int>::reverse_iterator vri;
+    typedef string::const_iterator sci;
+    vri it = value.rbegin();
+    sci sit = transferredValue.begin();
+    int first = transferredValue.length()%4;
+    if(first!=0){
+        int res = 0;
+        while(first--){
+            res *= 10;
+            res += static_cast<int>(static_cast<short>(*sit++-'0'));
+        }
+        *it = res;
+        it++;
     }
     for(;it!=value.rend();it++){
-        *it = static_cast<jbyte>(static_cast<short>(*sit-'0')*10+static_cast<short>(*(++sit)-'0'));
+        *it = static_cast<int>(*sit-'0')*1000+static_cast<int>(*(++sit)-'0')*100
+                +static_cast<int>(*(++sit)-'0')*10+static_cast<int>(*(++sit)-'0');
         sit++;
     }
 }
 
-int BigInteger::compareTo(vector<jbyte> v1, vector<jbyte> v2) {
+int BigInteger::compareTo(vector<int> v1, vector<int> v2) {
     //假设每个序列都是数据完好的，比如0->[0]而不会是[0][0][0],如果这样会使得错误的快捷比较。这是需要保证的。
-    typedef vector<jbyte>::reverse_iterator VJi;
+    typedef vector<int>::reverse_iterator VJi;
     if(v1.size()>v2.size()){
         return 1;
     }else if(v1.size()<v2.size()){
@@ -178,10 +188,10 @@ ll BigInteger::longlongValue() const {
 }
 ll BigInteger::longlongValue(const BigInteger &num) {
     ll res = 0;
-    vector<jbyte>::const_reverse_iterator it = num.value.rbegin();
+    vector<int>::const_reverse_iterator it = num.value.rbegin();
     res += (*it++);
     while(it!=num.value.rend()){
-        res *= 100;
+        res *= 10000;
         res += *it;
         it++;
     }
@@ -204,8 +214,8 @@ short divHelp(BigInteger &b1, const BigInteger &b2){
 }
 long long int BigInteger::toLonglongValue()const{
     long long int res = 0;
-    vector<jbyte> vec = (*this).value;
-    vector<jbyte>::const_reverse_iterator it = vec.rbegin();
+    vector<int> vec = (*this).value;
+    vector<int>::const_reverse_iterator it = vec.rbegin();
     while(it!=vec.rend()){
         res *= 100;
         res += (*it);

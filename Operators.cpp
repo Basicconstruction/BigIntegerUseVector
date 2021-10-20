@@ -1,7 +1,3 @@
-//
-// Created by hay boy on 2021/10/3.
-//
-
 #include "BigInteger.h"
 using std::vector;
 using std::list;
@@ -81,36 +77,42 @@ BigInteger BigInteger::operator<<(long long int y) const {
     //bigger
     assert(y>=0);
     BigInteger b2 = *this;
-    if(y%2==0){
-        vector<jbyte> vi = b2.value;
-        deque<jbyte> di(vi.begin(),vi.end());
-        for(long long i = 0;i<y/2;i++){
+    if(*this==0){
+        return BigInteger(0);
+    }
+    if(y%4==0){
+        vector<int> vi = b2.value;
+        deque<int> di(vi.begin(),vi.end());
+        for(long long i = 0;i<y/4;i++){
             di.push_front(0);
         }
-        b2.value = vector<jbyte>(di.begin(),di.end());
+        b2.value = vector<int>(di.begin(),di.end());
     }else{
-        vector<jbyte> vi = b2.value;
+        vector<int> vi = b2.value;
         ostringstream os;
-        std::vector<jbyte>::const_reverse_iterator it = vi.rbegin();
-        os<<short(*it);
-        ++it;
-        for(;it!=vi.rend();it++){
-            jbyte r = *it;
-            if(int(r)>=10){
-                os<<(short)r;
+        std::vector<int>::const_reverse_iterator it = vi.rbegin();
+        os<<(*it++);
+        for(;it!=vi.rend();){
+            int r = *it++;
+            if(r>=1000){
+                os<<r;
+            }else if(r>=100){
+                os<<"0"<<r;
+            }else if(r>=10){
+                os<<"00"<<r;
             }else{
-                os<<0<<short(r);
+                os<<"000"<<r;
             }
         }
-        string s = os.str()+'0';
-        vi.resize(s.length()%2==0?s.length()/2:s.length()/2+1);
+        string s = os.str()+string(y%4,'0');
+        vi.resize(s.length()%4==0?s.length()/4:s.length()/4+1);
         BigInteger::putInObject(vi,s);
-        deque<jbyte> di(vi.begin(),vi.end());
-        y = y - 1;
-        for(long long i = 0;i<y/2;i++){
+        deque<int> di(vi.begin(),vi.end());
+        y = y - y%4;
+        for(long long i = 0;i<y/4;i++){
             di.push_front(0);
         }
-        b2.value = vector<jbyte>(di.begin(),di.end());
+        b2.value = vector<int>(di.begin(),di.end());
     }
     return b2;
 }
@@ -119,13 +121,13 @@ BigInteger BigInteger::operator>>(const long long int& y) const {
     //smaller
     assert(y>=0);
     BigInteger b2 = *this;
-    vector<jbyte> vi = b2.value;
+    vector<int> vi = b2.value;
     ostringstream os;
-    std::vector<jbyte>::const_reverse_iterator it = vi.rbegin();
+    std::vector<int>::const_reverse_iterator it = vi.rbegin();
     os<<short(*it);
     ++it;
     for(;it!=vi.rend();it++){
-        jbyte r = *it;
+        int r = *it;
         if(int(r)>=10){
             os<<(short)r;
         }else{

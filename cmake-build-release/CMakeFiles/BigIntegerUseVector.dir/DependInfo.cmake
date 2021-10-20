@@ -8,12 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/BigInteger.cpp" "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/cmake-build-release/CMakeFiles/BigIntegerUseVector.dir/BigInteger.cpp.obj"
-  "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Constructor.cpp" "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/cmake-build-release/CMakeFiles/BigIntegerUseVector.dir/Constructor.cpp.obj"
-  "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Operators.cpp" "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/cmake-build-release/CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.obj"
-  "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/OringeOperatorFunction.cpp" "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/cmake-build-release/CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.obj"
-  "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/Utils.cpp" "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/cmake-build-release/CMakeFiles/BigIntegerUseVector.dir/Utils.cpp.obj"
-  "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/main.cpp" "C:/Users/hay boy/CLionProjects/BigIntegerUseVector/cmake-build-release/CMakeFiles/BigIntegerUseVector.dir/main.cpp.obj"
+  "C:/Users/hay boy/CLionProjects/BigInteger/BigInteger.cpp" "C:/Users/hay boy/CLionProjects/BigInteger/cmake-build-release/CMakeFiles/BigIntegerUseVector.dir/BigInteger.cpp.obj"
+  "C:/Users/hay boy/CLionProjects/BigInteger/Constructor.cpp" "C:/Users/hay boy/CLionProjects/BigInteger/cmake-build-release/CMakeFiles/BigIntegerUseVector.dir/Constructor.cpp.obj"
+  "C:/Users/hay boy/CLionProjects/BigInteger/Operators.cpp" "C:/Users/hay boy/CLionProjects/BigInteger/cmake-build-release/CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.obj"
+  "C:/Users/hay boy/CLionProjects/BigInteger/OringeOperatorFunction.cpp" "C:/Users/hay boy/CLionProjects/BigInteger/cmake-build-release/CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.obj"
+  "C:/Users/hay boy/CLionProjects/BigInteger/main.cpp" "C:/Users/hay boy/CLionProjects/BigInteger/cmake-build-release/CMakeFiles/BigIntegerUseVector.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

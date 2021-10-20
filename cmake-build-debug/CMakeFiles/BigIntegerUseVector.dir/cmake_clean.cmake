@@ -6,7 +6,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/BigIntegerUseVector.dir/Constructor.cpp.obj"
   "CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.obj"
   "CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.obj"
-  "CMakeFiles/BigIntegerUseVector.dir/Utils.cpp.obj"
   "CMakeFiles/BigIntegerUseVector.dir/main.cpp.obj"
   "libBigIntegerUseVector.dll.a"
 )

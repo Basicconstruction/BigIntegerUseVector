@@ -3,25 +3,16 @@
 
 CMakeFiles/BigIntegerUseVector.dir/BigInteger.cpp.obj: \
  ../BigInteger.cpp \
- ../BigInteger.h \
- ../Utils.h
+ ../BigInteger.h
 CMakeFiles/BigIntegerUseVector.dir/Constructor.cpp.obj: \
  ../BigInteger.h \
- ../Constructor.cpp \
- ../Utils.h
+ ../Constructor.cpp
 CMakeFiles/BigIntegerUseVector.dir/Operators.cpp.obj: \
  ../BigInteger.h \
- ../Operators.cpp \
- ../Utils.h
+ ../Operators.cpp
 CMakeFiles/BigIntegerUseVector.dir/OringeOperatorFunction.cpp.obj: \
  ../BigInteger.h \
- ../OringeOperatorFunction.cpp \
- ../Utils.h
-CMakeFiles/BigIntegerUseVector.dir/Utils.cpp.obj: \
- ../BigInteger.h \
- ../Utils.cpp \
- ../Utils.h
+ ../OringeOperatorFunction.cpp
 CMakeFiles/BigIntegerUseVector.dir/main.cpp.obj: \
  ../BigInteger.h \
- ../Utils.h \
  ../main.cpp
