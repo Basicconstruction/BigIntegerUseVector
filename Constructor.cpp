@@ -18,8 +18,8 @@ BigInteger::BigInteger(long long int initNum) {
         p+=4;
     }
     int eff_size = p/4;
-    this->value = vector<int>(eff_size);
-    putInObject(this->value,initNum);
+    this->mag = vector<int>(eff_size);
+    putInObject(this->mag, initNum);
 }
 BigInteger::BigInteger(string initStr) {
     //ignore initStr such as "000123";
@@ -34,15 +34,15 @@ BigInteger::BigInteger(string initStr) {
     }
     unsigned int size = initStr.size();
     size = size % 4==0?size/4:size/4+1;
-    this->value = vector<int>(size);
-    putInObject(this->value,initStr);
+    this->mag = vector<int>(size);
+    putInObject(this->mag, initStr);
 }
 BigInteger::BigInteger(const BigInteger &bigInteger) {
     this->signum = bigInteger.signum;
-    this->value = vector<int>(bigInteger.value);//like .assign()
+    this->mag = vector<int>(bigInteger.mag);//like .assign()
 }
 BigInteger::BigInteger(){
     this->signum = true;
-    this->value = vector<int>(1,0);
+    this->mag = vector<int>(1, 0);
 }
 

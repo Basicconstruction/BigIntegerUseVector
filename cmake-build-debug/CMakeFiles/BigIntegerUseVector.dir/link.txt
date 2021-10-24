@@ -1,3 +1,0 @@
-"D:\Program Files\x64\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\BigIntegerUseVector.dir/objects.a
-D:\MingW\bin\ar.exe cr CMakeFiles\BigIntegerUseVector.dir/objects.a @CMakeFiles\BigIntegerUseVector.dir\objects1.rsp
-D:\MingW\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\BigIntegerUseVector.dir/objects.a -Wl,--no-whole-archive -o BigIntegerUseVector.exe -Wl,--out-implib,libBigIntegerUseVector.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\BigIntegerUseVector.dir\linklibs.rsp

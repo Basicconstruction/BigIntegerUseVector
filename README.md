@@ -1,4 +1,4 @@
-let's start
+let's start vector<int>----->BigInteger
 ===
 设计作用  
 --
@@ -11,7 +11,7 @@ let's start
 ```cpp
 公有成员
 bool signum 用于存储一个数字是正数还是负数，这里默认定义0的signum=true
-vector<unsgined char> value 用于存储一个数的数据。
+vector<unsgined char> mag 用于存储一个数的数据。
     存储规则:类似于cpu的数字存储方式采用小端存储的方式。
     示例:  100-> 
         0 1
@@ -115,7 +115,7 @@ printSelf()  直接输出 类似于内存中数据的存储形式。
 toString()和prinfSelf()也有静态函数版本
 
 static string toString(const BigInteger& bigInteger);
-static void putInObject(vector<jbyte> &value,const string& transferredValue);
+static void putInObject(vector<jbyte> &mag,const string& transferredValue);
     示例:
         BigInteger x(112);
         string d = BigInteger::toString(x);
@@ -281,7 +281,7 @@ print(end-start)
 
 ```julia
 #julia
-function factorial(i)
+Arrays factorial(i)
     res = BigInt(1)
     for j in collect(1:i)
         res *= j
@@ -291,7 +291,7 @@ end
 ```
 ```julia
 #julia
-function pow2(i,n=2)
+Arrays pow2(i,n=2)
     res = BigInt(1)
     for j in collect(1:i)
         res *= n
@@ -302,7 +302,7 @@ end
 ```julia
 #julia
 known = Dict(0=>BigInt(0), 1=>BigInt(1))
-function fibonacci(n)
+Arrays fibonacci(n)
     if n ∈ keys(known)
         return known[n]
     end
@@ -311,7 +311,7 @@ function fibonacci(n)
     res
 end
 #fun2
-function fibonacci2(n)
+Arrays fibonacci2(n)
     x = BigInt(1)
     y = BigInt(0)
     z = BigInt(1)

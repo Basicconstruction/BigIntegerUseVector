@@ -4,12 +4,12 @@ using namespace std;
 using namespace std::string_literals;
 ostream& operator<<(ostream& os,const BigInteger & num){
     char fillc = os.fill('0');
-    auto it = num.value.rbegin();
+    auto it = num.mag.rbegin();
     if(!num.signum){
         os<<"-";
     }
     os<<*it++;
-    for(;it!=num.value.rend();it++){
+    for(;it!=num.mag.rend(); it++){
         os<<std::setw(4)<<*it;
     }
     os<<setfill(fillc);
@@ -20,7 +20,7 @@ istream &operator>>(istream & is, BigInteger & num) {
     getline(cin,s,'\n');
     BigInteger tmp(s);
     num.signum = tmp.signum;
-    num.value = tmp.value;
+    num.mag = tmp.mag;
     return is;
 }
 
@@ -37,10 +37,10 @@ string BigInteger::toString(const BigInteger& bigInteger){
     string s;
     s+= bigInteger.signum ? "" : "-";
     ostringstream os;
-    std::vector<int>::const_reverse_iterator it = bigInteger.value.rbegin();
+    std::vector<int>::const_reverse_iterator it = bigInteger.mag.rbegin();
     os<<*it;
     ++it;
-    for(;it!=bigInteger.value.rend();it++){
+    for(;it!=bigInteger.mag.rend(); it++){
         int r = *it;
         if(r>=1000){
             os<<r;
@@ -60,7 +60,7 @@ void BigInteger::printSelf() const {
 }
 void BigInteger::printSelf(const BigInteger& bigInteger){
     std::ostream_iterator<int> out(std::cout," ");
-    copy(bigInteger.value.begin(),bigInteger.value.end(),out);
+    copy(bigInteger.mag.begin(), bigInteger.mag.end(), out);
     std::cout<<((bigInteger.signum)?'+':'-')<<std::endl;
 }
 
@@ -119,7 +119,7 @@ BigInteger BigInteger::value_of(const BigInteger &num) {
 BigInteger BigInteger::pow(int times){
     return BigInteger::pow(*this,times);
 }
-BigInteger BigInteger::pow(BigInteger& bigInteger, const int& times) {
+BigInteger BigInteger::pow(const BigInteger& bigInteger, const int& times) {
     if(times == 0){
         return BigInteger::value_of(1);
     }else if(times == 1){
@@ -188,9 +188,9 @@ ll BigInteger::longlongValue() const {
 }
 ll BigInteger::longlongValue(const BigInteger &num) {
     ll res = 0;
-    vector<int>::const_reverse_iterator it = num.value.rbegin();
+    vector<int>::const_reverse_iterator it = num.mag.rbegin();
     res += (*it++);
-    while(it!=num.value.rend()){
+    while(it!=num.mag.rend()){
         res *= 10000;
         res += *it;
         it++;
@@ -214,7 +214,7 @@ short divHelp(BigInteger &b1, const BigInteger &b2){
 }
 long long int BigInteger::toLonglongValue()const{
     long long int res = 0;
-    vector<int> vec = (*this).value;
+    vector<int> vec = (*this).mag;
     vector<int>::const_reverse_iterator it = vec.rbegin();
     while(it!=vec.rend()){
         res *= 100;

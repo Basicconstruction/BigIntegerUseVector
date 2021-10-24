@@ -16,13 +16,18 @@
 #include <iterator>
 using namespace std;
 typedef long long int ll;
+struct helper;
 class BigInteger{
 public:
-    vector<int> value;
-    bool signum;
+    vector<int> mag;
+    int signum;
     BigInteger();
     explicit BigInteger(long long int);
     explicit BigInteger(string);
+    BigInteger(const vector<int>& val,int sign){
+        this->signum = sign;
+        this->mag = val;
+    }
     static void putInObject(vector<int> &value, ll transferredValue);
     friend ostream& operator<<(ostream& os,const BigInteger & num);
     friend istream& operator>>(istream& is,BigInteger & num);
@@ -112,6 +117,7 @@ public:
     static BigInteger abs(const string&);
     static BigInteger abs(const long long int&);
     BigInteger operator<<(long long y) const;
+    BigInteger& operator<<(helper ip);
     BigInteger operator>>(const long long& y) const;
     BigInteger singleMul(const int& b) const;
     BigInteger mul(const BigInteger& b2)const;
@@ -149,7 +155,7 @@ public:
     static BigInteger value_of(const string&);
     static BigInteger value_of(const BigInteger&);
     BigInteger pow(int);
-    static BigInteger pow(BigInteger&,const int&);
+    static BigInteger pow(const BigInteger&,const int&);
     static BigInteger pow(const string&,const int&);
     static BigInteger pow(const long long int&,const int&);
     static BigInteger factorial(const int&);
@@ -160,6 +166,9 @@ public:
     static ll longlongValue(const BigInteger&);
 };
 static short sqrtDict[] = {0, 1 ,1 ,1 ,2 ,2 ,2 ,2 ,2 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,4 ,4 ,4 ,4 ,4 ,4 ,4 ,4 ,4 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,6 ,6 ,6 ,6 ,6 ,6 ,6 ,6 ,6 ,6 ,6 ,6 ,6 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9};
+struct helper{
 
-
+};
+static helper ip;
+static const long long LONG_MASK = 0xffffffff;
 #endif //BIGINTEGERUSEVECTOR_BIGINTEGER_H

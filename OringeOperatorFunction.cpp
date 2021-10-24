@@ -6,8 +6,8 @@
 
 BigInteger BigInteger::add(const BigInteger &num) const {
     short carry = 0;
-    vector<int> tem = this->value;
-    vector<int> added = num.value;
+    vector<int> tem = this->mag;
+    vector<int> added = num.mag;
     vector<int> longOne, shortOne;
     if ((this->signum && num.signum) || (!this->signum && !num.signum)) {
         if (tem.size() >= added.size()) {
@@ -46,7 +46,7 @@ BigInteger BigInteger::add(const BigInteger &num) const {
         }
         BigInteger res;
         res.signum = this->signum;
-        res.value.swap(longOne);
+        res.mag.swap(longOne);
         return res;
     } else {
         int cres = compareTo(tem, added);
@@ -87,11 +87,11 @@ BigInteger BigInteger::add(const BigInteger &num) const {
             }
         }
         assert(carry == 0);
-        res.value.swap(longOne);
-        std::vector<int>::iterator back_i = res.value.end() - 1;
-        for (; back_i != res.value.begin(); back_i--) {
+        res.mag.swap(longOne);
+        std::vector<int>::iterator back_i = res.mag.end() - 1;
+        for (; back_i != res.mag.begin(); back_i--) {
             if (*back_i == 0) {
-                res.value.erase(back_i);
+                res.mag.erase(back_i);
             } else {
                 break;
             }
@@ -118,7 +118,7 @@ int BigInteger::compareTo(const BigInteger &num) const {
     } else if (!this->signum && num.signum) {
         return -1;
     } else {
-        int getSignal = compareTo((*this).value, num.value);
+        int getSignal = compareTo((*this).mag, num.mag);
         if (getSignal == 0) {
             return 0;
         } else {
@@ -207,9 +207,9 @@ BigInteger BigInteger::singleMul(const int &b) const {
     BigInteger res;
     BigInteger tis = *this;
     int expr;
-    vector<int>::reverse_iterator tit = tis.value.rbegin();
-    for(;tit!=tis.value.rend();tit++){
-        res = res << 4;
+    vector<int>::reverse_iterator tit = tis.mag.rbegin();
+    for(;tit!=tis.mag.rend(); tit++){
+        res << ip;
         expr = (*tit) * b;
         res += expr;
     }
@@ -219,9 +219,9 @@ BigInteger BigInteger::singleMul(const int &b) const {
 BigInteger BigInteger::mul(const BigInteger &b2) const {
     BigInteger res;
     BigInteger tis = *this;
-    vector<int>::const_reverse_iterator rit = b2.value.rbegin();
-    for (; rit != b2.value.rend(); rit++) {
-        res = res << 4;
+    vector<int>::const_reverse_iterator rit = b2.mag.rbegin();
+    for (; rit != b2.mag.rend(); rit++) {
+        res << ip;
         res += tis.singleMul(*rit);
     }
     res.signum = (this->signum == b2.signum);
@@ -330,10 +330,10 @@ BigInteger BigInteger::div(const BigInteger &num, bool open) const {
         tmp.signum = !tmp.signum;
         return tmp;
     }
-    if (compareTo(num.value, (*this).value) == 1) {
+    if (compareTo(num.mag, (*this).mag) == 1) {
         return BigInteger(0);
     }
-    tmp.value = (*this).value;
+    tmp.mag = (*this).mag;
     tmp.signum = true;
     string s = tmp.toString();
     size_t len = s.length();
@@ -391,7 +391,7 @@ BigInteger BigInteger::mod(const BigInteger &num) const {
     if (this->lessThan(BigInteger(9223372036854775807))) {
         return BigInteger((*this).toLonglongValue() % num.toLonglongValue());
     }
-    if (compareTo(num.value, (*this).value) == 1) {
+    if (compareTo(num.mag, (*this).mag) == 1) {
         if (this->signum) {
             return *this;
         } else {
@@ -474,9 +474,9 @@ BigInteger BigInteger::newton_sqrt() const {
 BigInteger BigInteger::excel_sqrt() const {
     short len;
     short ori;
-    short num = short(*(this->value.rbegin()));
+    short num = short(*(this->mag.rbegin()));
     ori = sqrtDict[num];
-    len = this->value.size();
+    len = this->mag.size();
     BigInteger res(ori);
     res = res << len;
     bool t = true;

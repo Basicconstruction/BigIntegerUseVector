@@ -81,14 +81,14 @@ BigInteger BigInteger::operator<<(long long int y) const {
         return BigInteger(0);
     }
     if(y%4==0){
-        vector<int> vi = b2.value;
+        vector<int> vi = b2.mag;
         deque<int> di(vi.begin(),vi.end());
         for(long long i = 0;i<y/4;i++){
             di.push_front(0);
         }
-        b2.value = vector<int>(di.begin(),di.end());
+        b2.mag = vector<int>(di.begin(), di.end());
     }else{
-        vector<int> vi = b2.value;
+        vector<int> vi = b2.mag;
         ostringstream os;
         std::vector<int>::const_reverse_iterator it = vi.rbegin();
         os<<(*it++);
@@ -112,16 +112,26 @@ BigInteger BigInteger::operator<<(long long int y) const {
         for(long long i = 0;i<y/4;i++){
             di.push_front(0);
         }
-        b2.value = vector<int>(di.begin(),di.end());
+        b2.mag = vector<int>(di.begin(), di.end());
     }
     return b2;
 }
+
+BigInteger& BigInteger::operator<<(helper isp){
+    if(this->equals(BigInteger(0))){
+        return *this;
+    }
+    int a[] = {0};
+    copy(a,a+1,std::inserter(this->mag, this->mag.begin()));
+    return *this;
+}
+
 
 BigInteger BigInteger::operator>>(const long long int& y) const {
     //smaller
     assert(y>=0);
     BigInteger b2 = *this;
-    vector<int> vi = b2.value;
+    vector<int> vi = b2.mag;
     ostringstream os;
     std::vector<int>::const_reverse_iterator it = vi.rbegin();
     os<<short(*it);
@@ -141,7 +151,7 @@ BigInteger BigInteger::operator>>(const long long int& y) const {
     size_t len_new = s.length() - y;
     vi.resize(len_new%2==0?len_new/2:len_new/2+1);
     BigInteger::putInObject(vi,string(s.begin(),s.begin()+int(len_new)));
-    b2.value = vi;
+    b2.mag = vi;
     return b2;
 }
 BigInteger BigInteger::operator*(const BigInteger& b2)const{
@@ -155,17 +165,17 @@ BigInteger BigInteger::operator*(const long long int& b2)const{
 }
 
 BigInteger &BigInteger::operator*=(const BigInteger &b2) {
-    (*this).value = this->mul(b2).value;
+    (*this).mag = this->mul(b2).mag;
     return *this;
 }
 
 BigInteger &BigInteger::operator*=(const string &b2) {
-    (*this).value = this->mul(b2).value;
+    (*this).mag = this->mul(b2).mag;
     return *this;
 }
 
 BigInteger &BigInteger::operator*=(const long long int& b2) {
-    (*this).value = this->mul(b2).value;
+    (*this).mag = this->mul(b2).mag;
     return *this;
 }
 
