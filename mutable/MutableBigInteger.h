@@ -349,7 +349,6 @@ public:
              sets[j] = tp;
              num = (num>>1);
          }
-         sets[31] = true;
          sets.flip();
          int notZero = 31;
          for(int j = 0;j<=31;j++){
