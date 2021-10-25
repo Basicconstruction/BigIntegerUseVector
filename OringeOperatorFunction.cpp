@@ -204,16 +204,23 @@ BigInteger BigInteger::singleMul(const int &b) const {
     } else if (b == 1) {
         return *this;
     }
-    BigInteger res;
     BigInteger tis = *this;
     int expr;
-    vector<int>::reverse_iterator tit = tis.mag.rbegin();
-    for(;tit!=tis.mag.rend(); tit++){
-        res << ip;
-        expr = (*tit) * b;
-        res += expr;
+    int push = 0;
+    for(int & i : tis.mag){
+        expr = i*b+push;
+        if(expr>=10000){
+            push = expr / 10000;
+            expr %= 10000;
+        }else{
+            push = 0;
+        }
+        i = expr;
     }
-    return res;
+    if(push>0){
+        tis.mag.push_back(push);
+    }
+    return tis;
 }
 
 BigInteger BigInteger::mul(const BigInteger &b2) const {

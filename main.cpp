@@ -33,6 +33,16 @@ int main() {
 //            cout<<endl;
 //            IntegerHelp::showBytes(-12);
 //            cout<<endl;
+//            BigInteger xr(999);
+//            cout<<xr.pow(999)<<endl;
+//            BigInteger cv(56785678);
+//            BigInteger res(0);
+//            for(int f = 0;f<=100000;f++){
+//                res += cv;
+//            }
+//            cout<<res<<endl;
+            cout<<BigInteger::fibo(100000)<<endl;
+            cout<<clock()-begin<<"ms"<<endl;
             MutableBigInteger x(0b00000011);
             x.leftShift(1);
             cout<<x<<endl;
