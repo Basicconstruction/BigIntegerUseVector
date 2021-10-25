@@ -7,6 +7,7 @@
 #include <bitset>
 #include "Arrays.h"
 #include "../BigInteger.h"
+#include "IntegerHelp.h"
 typedef long long bint;
 using namespace std;
 class MutableBigInteger{
@@ -267,14 +268,15 @@ public:
          }
      }
 
-     /**
+
+/**
       * Right shift this MutableBigInteger n bits. The MutableBigInteger is left
       * in normal form.
       */
      void rightShift(int n) {
          if (intLen == 0)
              return;
-         int nInts = shr3(n,5);
+         int nInts = IntegerHelp::shr3(n,5);
          int nBits = n & 0x1F;
          this->intLen -= nInts;
          if (nBits == 0)
@@ -286,6 +288,66 @@ public:
          } else {
              primitiveRightShift(nBits);
          }
+     }
+     /**
+     * Like {@link #leftShift(int)} but {@code n} can be zero.
+     */
+     void safeLeftShift(int n) {
+         if (n > 0) {
+             leftShift(n);
+         }
+     }
+
+     /**
+      * Left shift this MutableBigInteger n bits.
+      */
+     void leftShift(int n) {
+         /*
+          * If there is enough storage space in this MutableBigInteger already
+          * the available space will be used. Space to the right of the used
+          * ints in the value array is faster to utilize, so the extra space
+          * will be taken from the right if possible.
+          */
+         if (intLen == 0)
+             return;
+         int nInts = IntegerHelp::shr3(n,5);
+         int nBits = n&0x1F;
+         int bitsInHighWord = BigInteger::bitLengthForInt(value[offset]);
+
+         // If shift can be done without moving words, do so
+         if (n <= (32-bitsInHighWord)) {
+             primitiveLeftShift(nBits);
+             return;
+         }
+
+         int newLen = intLen + nInts +1;
+         if (nBits <= (32-bitsInHighWord))
+             newLen--;
+         if (value.size() < newLen) {
+             // The array must grow
+             vector<int> result(newLen);
+             for (int i=0; i < intLen; i++)
+                 result[i] = value[offset+i];
+             setValue(result, newLen);
+         } else if (value.size() - offset >= newLen) {
+             // Use space on right
+             for(int i=0; i < newLen - intLen; i++)
+                 value[offset+intLen+i] = 0;
+         } else {
+             // Must use space on left
+             for (int i=0; i < intLen; i++)
+                 value[i] = value[offset+i];
+             for (int i=intLen; i < newLen; i++)
+                 value[i] = 0;
+             offset = 0;
+         }
+         intLen = newLen;
+         if (nBits == 0)
+             return;
+         if (nBits <= (32-bitsInHighWord))
+             primitiveLeftShift(nBits);
+         else
+             primitiveRightShift(32 -nBits);
      }
 
 
@@ -338,38 +400,39 @@ public:
      bool isZero(){
          return intLen==0;
      }
-     int shr3(int num,int n){
-         if(num>=0){
-             return num>>n;
+
+private:
+    /**
+     * Left shift this MutableBigInteger n bits, where n is
+     * less than 32.
+     * Assumes that intLen > 0, n > 0 for speed
+     */
+    void primitiveLeftShift(int n){
+         vector<int>& val = value;
+         int n2 = 32 - n;
+         for (int i=offset, c=val[i], m=i+intLen-1; i < m; i++) {
+             int b = c;
+             c = val[i+1];
+             val[i] = (b << n) | IntegerHelp::shr3(c,n2);
          }
-         bitset<32> sets;
-         num = -num;
-         for(int j = 0;j<=31;j++){
-             bool tp = num&1;
-             sets[j] = tp;
-             num = (num>>1);
-         }
-         sets.flip();
-         int notZero = 31;
-         for(int j = 0;j<=31;j++){
-             if(!sets[j]){
-             }else{
-                 notZero = j;
-                 break;
-             }
-         }
-         for(int j = notZero;j<=31;j++){
-             if(sets.test(j)){
-                 sets.flip(j);
-             }else{
-                 sets.flip(j);
-                 break;
-             }
-         }
-         sets[31] = true;
-         sets >>= n;
-         return (int)sets.to_ullong();
-     }
+         val[offset+intLen-1] <<= n;
+    }
+    /**
+ * Right shift this MutableBigInteger n bits, where n is
+ * less than 32.
+ * Assumes that intLen > 0, n > 0 for speed
+    */
+    void primitiveRightShift(int n){
+        vector<int>& val = value;
+        int n2 = 32 - n;
+        for (int i=offset+intLen-1, c=val[i]; i > offset; i--) {
+            int b = c;
+            c = val[i-1];
+            val[i] = (c << n2) |IntegerHelp::shr3(b,n);
+        }
+        val[offset] = IntegerHelp::shr3(val[offset],n);
+    }
+
 };
 
 #endif //BIGINTEGERUSEVECTOR_MUTABLEBIGINTEGER_H

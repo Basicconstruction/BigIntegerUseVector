@@ -14,6 +14,7 @@
 #include <deque>
 #include <sstream>
 #include <iterator>
+#include "mutable/IntegerHelp.h"
 using namespace std;
 typedef long long int ll;
 struct helper;
@@ -164,6 +165,8 @@ public:
     static BigInteger fibo(const long long int&);
     ll longlongValue() const;
     static ll longlongValue(const BigInteger&);
+
+    static int bitLengthForInt(int &i);
 };
 static short sqrtDict[] = {0, 1 ,1 ,1 ,2 ,2 ,2 ,2 ,2 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,4 ,4 ,4 ,4 ,4 ,4 ,4 ,4 ,4 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,6 ,6 ,6 ,6 ,6 ,6 ,6 ,6 ,6 ,6 ,6 ,6 ,6 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,7 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,8 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9 ,9};
 struct helper{

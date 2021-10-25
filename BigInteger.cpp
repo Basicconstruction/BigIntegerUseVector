@@ -223,6 +223,12 @@ long long int BigInteger::toLonglongValue()const{
     }
     return this->signum?res:-res;
 }
+/**
+     * Package private method to return bit length for an integer.
+     */
+int BigInteger::bitLengthForInt(int& n) {
+    return 32 - IntegerHelp::numberOfLeadingZeros(n);
+}
 
 
 
