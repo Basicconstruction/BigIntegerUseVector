@@ -466,6 +466,7 @@ BigInteger &BigInteger::toAbs() {
 }
 
 BigInteger BigInteger::newton_sqrt() const {
+    //deprecated need to update the algorithm,designed for the main repo.
     BigInteger res(1);
     bool t = true;
     while (t) {
